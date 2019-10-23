@@ -17,7 +17,13 @@ Removes bad chars for a string key (all except number, lowcase ascii7 letters, d
 
 ## Usage
 
-TBD.
+```typescript
+import cleanKey from "@plandek-utils/ts-clean-key";
+
+cleanKey("") // => ""
+cleanKey("  a - b") // => "a-b"
+cleanKey("  some Stuff 🚀 \n ñaaa --- a") // => "sometuffaaa-a"
+```
 
 ## Development, Commits, versioning and publishing
 
