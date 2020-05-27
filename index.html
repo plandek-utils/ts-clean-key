@@ -82,24 +82,37 @@
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> cleanKey <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { cleanKey } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
 
-cleanKey(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; ""</span>
-cleanKey(<span class="hljs-string">"  a - b"</span>) <span class="hljs-comment">// =&gt; "a-b"</span>
-cleanKey(<span class="hljs-string">"  some Stuff 🚀 \n ñaaa --- a"</span>) <span class="hljs-comment">// =&gt; "sometuffaaa-a"</span></code></pre>
+cleanKey(<span class="hljs-string">""</span>); <span class="hljs-comment">// =&gt; ""</span>
+cleanKey(<span class="hljs-string">"  a - b"</span>); <span class="hljs-comment">// =&gt; "a-b"</span>
+cleanKey(<span class="hljs-string">"  some Stuff 🚀 \n ñaaa --- a"</span>); <span class="hljs-comment">// =&gt; "sometuffaaa-a"</span></code></pre>
 				<p>By default, <code>cleanKey</code> will replace many resulting dashes for a single dash. You can disable this behaviour by passing an optional second options argument:</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> cleanKey <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
-cleanKey(<span class="hljs-string">"  some---a "</span>) <span class="hljs-comment">// =&gt; "some-a"</span>
-cleanKey(<span class="hljs-string">"  some---a "</span>, { replaceManyDashes: <span class="hljs-literal">true</span> }) <span class="hljs-comment">// =&gt; "some-a"</span>
-cleanKey(<span class="hljs-string">"  some---a "</span>, { replaceManyDashes: <span class="hljs-literal">false</span> }) <span class="hljs-comment">// =&gt; "some---a"</span></code></pre>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { cleanKey } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+cleanKey(<span class="hljs-string">"  some---a "</span>); <span class="hljs-comment">// =&gt; "some-a"</span>
+cleanKey(<span class="hljs-string">"  some---a "</span>, { replaceManyDashes: <span class="hljs-literal">true</span> }); <span class="hljs-comment">// =&gt; "some-a"</span>
+cleanKey(<span class="hljs-string">"  some---a "</span>, { replaceManyDashes: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "some---a"</span></code></pre>
 				<p>This can be used to keep clean a string made out of a combination of other clean keys</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> cleanKey <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
-<span class="hljs-keyword">const</span> a = cleanKey(<span class="hljs-string">" something-is-here "</span>) <span class="hljs-comment">// =&gt; "something-is-here"</span>
-<span class="hljs-keyword">const</span> b = cleanKey(<span class="hljs-string">" and-there   "</span>) <span class="hljs-comment">// =&gt; "and-there"</span>
-<span class="hljs-keyword">const</span> key = <span class="hljs-string">`<span class="hljs-subst">${a}</span>--<span class="hljs-subst">${b}</span>`</span> <span class="hljs-comment">// =&gt; "something-is-here--and-there"</span>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { cleanKey } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+<span class="hljs-keyword">const</span> a = cleanKey(<span class="hljs-string">" something-is-here "</span>); <span class="hljs-comment">// =&gt; "something-is-here"</span>
+<span class="hljs-keyword">const</span> b = cleanKey(<span class="hljs-string">" and-there   "</span>); <span class="hljs-comment">// =&gt; "and-there"</span>
+<span class="hljs-keyword">const</span> key = <span class="hljs-string">`<span class="hljs-subst">${a}</span>--<span class="hljs-subst">${b}</span>`</span>; <span class="hljs-comment">// =&gt; "something-is-here--and-there"</span>
 
-cleanKey(key) === key <span class="hljs-comment">// =&gt; false (it will change the `here--and` for a `here-and`)</span>
-cleanKey(key, { replaceManyDashes: <span class="hljs-literal">false</span> }) === key <span class="hljs-comment">// =&gt; true</span></code></pre>
+cleanKey(key) === key; <span class="hljs-comment">// =&gt; false (it will change the `here--and` for a `here-and`)</span>
+cleanKey(key, { replaceManyDashes: <span class="hljs-literal">false</span> }) === key; <span class="hljs-comment">// =&gt; true</span></code></pre>
+				<a href="#cleankeysimple" id="cleankeysimple" style="color: inherit; text-decoration: none;">
+					<h3><code>cleanKeySimple</code></h3>
+				</a>
+				<p>function</p>
+				<a href="#breaking-changes-warning" id="breaking-changes-warning" style="color: inherit; text-decoration: none;">
+					<h2>Breaking changes warning</h2>
+				</a>
+				<p>Since v2.0 the <code>cleanKey</code> is not the default export. Instead both <code>cleanKey</code> and <code>cleanKeySimple</code> are named exports.</p>
+				<pre><code class="language-typescript"><span class="hljs-comment">// v1.x</span>
+<span class="hljs-keyword">import</span> cleanKey <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+
+<span class="hljs-comment">// v2.x</span>
+<span class="hljs-keyword">import</span> { cleanKey } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;</code></pre>
 				<a href="#development-commits-versioning-and-publishing" id="development-commits-versioning-and-publishing" style="color: inherit; text-decoration: none;">
 					<h2>Development, Commits, versioning and publishing</h2>
 				</a>
@@ -178,6 +191,9 @@ yarn publish --access public</code></pre>
 				<ul class="before-current">
 					<li class=" tsd-kind-function">
 						<a href="globals.html#cleankey" class="tsd-kind-icon">clean<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#cleankeysimple" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple</a>
 					</li>
 				</ul>
 			</nav>
