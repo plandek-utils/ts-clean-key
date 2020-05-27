@@ -9,7 +9,11 @@
 
 [Github repo here](https://github.com/plandek-utils/ts-clean-key)
 
-Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash `-` and underscore `_`). It also removes multiple dashes in a row and replaces them for a single dash (this can be optionally disabled)
+Removes bad chars for a string key (all except number `0-9`, lowercase ascii7 letters `a-z`, dash `-` and underscore `_`).
+
+It also removes multiple dashes in a row and replaces them for a single dash, which  can be [optionally disabled](#cleankeysimple-and-replacemanydashes-option).
+
+It can optionally also allow uppercase ascii7 letters `A-Z` [with a toggle](#cleankeysimpleci-and-cleankeyci-and-casesensitive-option).
 
 ## Installation
 
@@ -25,30 +29,31 @@ cleanKey("  a - b"); // => "a-b"
 cleanKey("  some Stuff 🚀 \n ñaaa --- a"); // => "sometuffaaa-a"
 ```
 
-By default, `cleanKey` will replace many resulting dashes for a single dash. You can disable this behaviour by passing an optional second options argument:
+### `cleanKeySimple` and `replaceManyDashes` option
+
+By default, `cleanKey` will replace many resulting dashes for a single dash. You can disable this behaviour by passing `replaceManyDashes: false` in the optional options argument, or by using the `cleanKeySimple()` function.
 
 ```typescript
 import { cleanKey } from "@plandek-utils/ts-clean-key";
-cleanKey("  some---a "); // => "some-a"
-cleanKey("  some---a ", { replaceManyDashes: true }); // => "some-a"
-cleanKey("  some---a ", { replaceManyDashes: false }); // => "some---a"
+cleanKey(" something-is---here "); // => "something-is-here"
+cleanKey(" something-is---here ", { replaceManyDashes: false }); // => "something-is---here"
+cleanKeySimple(" something-is---here "); // => "something-is---here"
 ```
 
-This can be used to keep clean a string made out of a combination of other clean keys
+### `cleanKeySimpleCI()` and `cleanKeyCI()` and `caseSensitive` option
+
+By default, `cleanKey` will not allow uppercase ascii7 letters `A-Z`. You can change this behaviour by passing `caseSensitive: false` in the optional second argument, or by using the `cleanKeyCI()` or `cleanKeySimpleCI()` functions
 
 ```typescript
 import { cleanKey } from "@plandek-utils/ts-clean-key";
-const a = cleanKey(" something-is-here "); // => "something-is-here"
-const b = cleanKey(" and-there   "); // => "and-there"
-const key = `${a}--${b}`; // => "something-is-here--and-there"
+cleanKey(" Remove---Me "); // => "emove-e"
+cleanKey(" Remove---Me ", { caseSensitive: false }); // => "Remove-Me"
+cleanKeyCI(" Remove---Me "); // => "Remove-Me"
 
-cleanKey(key) === key; // => false (it will change the `here--and` for a `here-and`)
-cleanKey(key, { replaceManyDashes: false }) === key; // => true
+cleanKey(" Remove---Me ", { replaceManyDashes: false }); // => "emove---e"
+cleanKey(" Remove---Me ", { replaceManyDashes: false, caseSensitive: false }); // => "Remove---Me"
+cleanKeySimpleCI(" Remove---Me "); // => "Remove---Me"
 ```
-
-### `cleanKeySimple`
-
-function
 
 ## Breaking changes warning
 
