@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/plandek-utils/ts-clean-key/compare/v1.1.0...v2.0.0) (2020-05-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Since v2.0 the `cleanKey` is not the default export. Instead both `cleanKey` and
+`cleanKeySimple` are named exports.
+
+### Features
+
+* add `cleanKeySimple` + replace default export for named exports ([d618588](https://github.com/plandek-utils/ts-clean-key/commit/d6185885d915485246aacfb2d4158f8ca1afe22e))
+
 ## [1.1.0](https://github.com/plandek-utils/ts-clean-key/compare/v1.0.2...v1.1.0) (2020-05-27)
 
 
