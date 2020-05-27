@@ -1,4 +1,4 @@
-import cleanKey from "..";
+import { cleanKey, cleanKeySimple } from "..";
 
 describe("cleanKey(s)", () => {
   it('cleanKey("")', () => {
@@ -38,5 +38,31 @@ describe("cleanKey(s)", () => {
       expect(cleanKey(key)).not.toEqual(key); // it will change the `here--and` for a `here-and`
       expect(cleanKey(key, { replaceManyDashes: false })).toEqual(key); // => true
     });
+  });
+});
+
+describe("cleanKeySimple(s)", () => {
+  it('cleanKeySimple("")', () => {
+    expect(cleanKeySimple("")).toEqual("");
+  });
+
+  it('cleanKeySimple("  a - b")', () => {
+    expect(cleanKeySimple("  a - b")).toEqual("a-b");
+  });
+
+  it('cleanKeySimple("  some Stuff 🚀 \\n ñaaa --- a")', () => {
+    expect(cleanKeySimple("  some Stuff 🚀 \n ñaaa --- a")).toEqual("sometuffaaa---a");
+  });
+
+  it("testing it for a composed key", () => {
+    const a = cleanKeySimple(" something-is-here "); // => "something-is-here"
+    const b = cleanKeySimple(" and-there   "); // => "and-there"
+    const key = `${a}--${b}`; // => "something-is-here--and-there"
+
+    expect(a).toEqual("something-is-here");
+    expect(b).toEqual("and-there");
+    expect(key).toEqual("something-is-here--and-there");
+
+    expect(cleanKeySimple(key)).toEqual(key);
   });
 });

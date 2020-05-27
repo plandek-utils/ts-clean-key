@@ -18,34 +18,49 @@ Removes bad chars for a string key (all except number, lowercase ascii7 letters,
 ## Usage
 
 ```typescript
-import cleanKey from "@plandek-utils/ts-clean-key";
+import { cleanKey } from "@plandek-utils/ts-clean-key";
 
-cleanKey("") // => ""
-cleanKey("  a - b") // => "a-b"
-cleanKey("  some Stuff 🚀 \n ñaaa --- a") // => "sometuffaaa-a"
+cleanKey(""); // => ""
+cleanKey("  a - b"); // => "a-b"
+cleanKey("  some Stuff 🚀 \n ñaaa --- a"); // => "sometuffaaa-a"
 ```
 
 By default, `cleanKey` will replace many resulting dashes for a single dash. You can disable this behaviour by passing an optional second options argument:
 
 ```typescript
-import cleanKey from "@plandek-utils/ts-clean-key";
-cleanKey("  some---a ") // => "some-a"
-cleanKey("  some---a ", { replaceManyDashes: true }) // => "some-a"
-cleanKey("  some---a ", { replaceManyDashes: false }) // => "some---a"
+import { cleanKey } from "@plandek-utils/ts-clean-key";
+cleanKey("  some---a "); // => "some-a"
+cleanKey("  some---a ", { replaceManyDashes: true }); // => "some-a"
+cleanKey("  some---a ", { replaceManyDashes: false }); // => "some---a"
 ```
 
 This can be used to keep clean a string made out of a combination of other clean keys
 
 ```typescript
-import cleanKey from "@plandek-utils/ts-clean-key";
-const a = cleanKey(" something-is-here ") // => "something-is-here"
-const b = cleanKey(" and-there   ") // => "and-there"
-const key = `${a}--${b}` // => "something-is-here--and-there"
+import { cleanKey } from "@plandek-utils/ts-clean-key";
+const a = cleanKey(" something-is-here "); // => "something-is-here"
+const b = cleanKey(" and-there   "); // => "and-there"
+const key = `${a}--${b}`; // => "something-is-here--and-there"
 
-cleanKey(key) === key // => false (it will change the `here--and` for a `here-and`)
-cleanKey(key, { replaceManyDashes: false }) === key // => true
+cleanKey(key) === key; // => false (it will change the `here--and` for a `here-and`)
+cleanKey(key, { replaceManyDashes: false }) === key; // => true
 ```
 
+### `cleanKeySimple`
+
+function
+
+## Breaking changes warning
+
+Since v2.0 the `cleanKey` is not the default export. Instead both `cleanKey` and `cleanKeySimple` are named exports.
+
+```typescript
+// v1.x
+import cleanKey from "@plandek-utils/ts-clean-key";
+
+// v2.x
+import { cleanKey } from "@plandek-utils/ts-clean-key";
+```
 
 ## Development, Commits, versioning and publishing
 
