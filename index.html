@@ -74,7 +74,7 @@
 				<a href="https://codeclimate.com/github/plandek-utils/ts-clean-key/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0a2ee0323272ad4910b5/test_coverage" alt="Test Coverage"></a></p>
 				<p><a href="https://plandek-utils.github.io/ts-clean-key">TypeDoc generated docs in here</a></p>
 				<p><a href="https://github.com/plandek-utils/ts-clean-key">Github repo here</a></p>
-				<p>Removes bad chars for a string key (all except number, lowcase ascii7 letters, dash <code>-</code> and underscore <code>_</code>). It also removes multiple dashes in a row and replaces them for a single dash</p>
+				<p>Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash <code>-</code> and underscore <code>_</code>). It also removes multiple dashes in a row and replaces them for a single dash (this can be optionally disabled)</p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
@@ -87,6 +87,19 @@
 cleanKey(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; ""</span>
 cleanKey(<span class="hljs-string">"  a - b"</span>) <span class="hljs-comment">// =&gt; "a-b"</span>
 cleanKey(<span class="hljs-string">"  some Stuff 🚀 \n ñaaa --- a"</span>) <span class="hljs-comment">// =&gt; "sometuffaaa-a"</span></code></pre>
+				<p>By default, <code>cleanKey</code> will replace many resulting dashes for a single dash. You can disable this behaviour by passing an optional second options argument:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> cleanKey <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+cleanKey(<span class="hljs-string">"  some---a "</span>) <span class="hljs-comment">// =&gt; "some-a"</span>
+cleanKey(<span class="hljs-string">"  some---a "</span>, { replaceManyDashes: <span class="hljs-literal">true</span> }) <span class="hljs-comment">// =&gt; "some-a"</span>
+cleanKey(<span class="hljs-string">"  some---a "</span>, { replaceManyDashes: <span class="hljs-literal">false</span> }) <span class="hljs-comment">// =&gt; "some---a"</span></code></pre>
+				<p>This can be used to keep clean a string made out of a combination of other clean keys</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> cleanKey <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+<span class="hljs-keyword">const</span> a = cleanKey(<span class="hljs-string">" something-is-here "</span>) <span class="hljs-comment">// =&gt; "something-is-here"</span>
+<span class="hljs-keyword">const</span> b = cleanKey(<span class="hljs-string">" and-there   "</span>) <span class="hljs-comment">// =&gt; "and-there"</span>
+<span class="hljs-keyword">const</span> key = <span class="hljs-string">`<span class="hljs-subst">${a}</span>--<span class="hljs-subst">${b}</span>`</span> <span class="hljs-comment">// =&gt; "something-is-here--and-there"</span>
+
+cleanKey(key) === key <span class="hljs-comment">// =&gt; false (it will change the `here--and` for a `here-and`)</span>
+cleanKey(key, { replaceManyDashes: <span class="hljs-literal">false</span> }) === key <span class="hljs-comment">// =&gt; true</span></code></pre>
 				<a href="#development-commits-versioning-and-publishing" id="development-commits-versioning-and-publishing" style="color: inherit; text-decoration: none;">
 					<h2>Development, Commits, versioning and publishing</h2>
 				</a>
