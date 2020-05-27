@@ -19,13 +19,15 @@ const MANY_DASHES = /[-]+/g;
 const DASH = "-";
 
 /**
- * Removes bad chars for a string key (all except number, lowcase ascii7 letters, dash `-` and underscore `_`)
- * It also removes multiple dashes in a row and replaces them for a single dash
+ * Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash `-` and underscore `_`)
+ * It also removes multiple dashes in a row and replaces them for a single dash if the option is given
  *
  * @param s
+ * @param opts.replaceManyDashes (default `true`)
  */
-export function cleanKey(s: string): string {
-  return s.replace(INVALID_CHARS, EMPTY).replace(MANY_DASHES, DASH);
+export function cleanKey(s: string, opts: { replaceManyDashes: boolean } = { replaceManyDashes: true }): string {
+  const clean = s.replace(INVALID_CHARS, EMPTY);
+  return opts.replaceManyDashes ? clean.replace(MANY_DASHES, DASH) : clean;
 }
 
 export default cleanKey;

@@ -9,7 +9,7 @@
 
 [Github repo here](https://github.com/plandek-utils/ts-clean-key)
 
-Removes bad chars for a string key (all except number, lowcase ascii7 letters, dash `-` and underscore `_`). It also removes multiple dashes in a row and replaces them for a single dash
+Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash `-` and underscore `_`). It also removes multiple dashes in a row and replaces them for a single dash (this can be optionally disabled)
 
 ## Installation
 
@@ -24,6 +24,28 @@ cleanKey("") // => ""
 cleanKey("  a - b") // => "a-b"
 cleanKey("  some Stuff 🚀 \n ñaaa --- a") // => "sometuffaaa-a"
 ```
+
+By default, `cleanKey` will replace many resulting dashes for a single dash. You can disable this behaviour by passing an optional second options argument:
+
+```typescript
+import cleanKey from "@plandek-utils/ts-clean-key";
+cleanKey("  some---a ") // => "some-a"
+cleanKey("  some---a ", { replaceManyDashes: true }) // => "some-a"
+cleanKey("  some---a ", { replaceManyDashes: false }) // => "some---a"
+```
+
+This can be used to keep clean a string made out of a combination of other clean keys
+
+```typescript
+import cleanKey from "@plandek-utils/ts-clean-key";
+const a = cleanKey(" something-is-here ") // => "something-is-here"
+const b = cleanKey(" and-there   ") // => "and-there"
+const key = `${a}--${b}` // => "something-is-here--and-there"
+
+cleanKey(key) === key // => false (it will change the `here--and` for a `here-and`)
+cleanKey(key, { replaceManyDashes: false }) === key // => true
+```
+
 
 ## Development, Commits, versioning and publishing
 
