@@ -79,8 +79,12 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function"><a href="globals.html#cleankey" class="tsd-kind-icon">clean<wbr>Key</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#cleankeyci" class="tsd-kind-icon">clean<wbr>KeyCI</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#cleankeyciwithdots" class="tsd-kind-icon">clean<wbr>KeyCIWith<wbr>Dots</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#cleankeysimple" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#cleankeysimpleci" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCI</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#cleankeysimpleciwithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCIWith<wbr>Dots</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#cleankeysimplewithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple<wbr>With<wbr>Dots</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#cleankeywithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>With<wbr>Dots</a></li>
 							</ul>
 						</section>
 					</div>
@@ -91,15 +95,18 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="cleankeyoptions" class="tsd-anchor"></a>
 					<h3>Clean<wbr>Key<wbr>Options</h3>
-					<div class="tsd-signature tsd-kind-icon">Clean<wbr>Key<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">; </span>replaceManyDashes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">Clean<wbr>Key<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>allowDots<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">; </span>caseSensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">; </span>replaceManyDashes<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/ae8caf4/src/index.ts#L44">index.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/daf5b3f/src/index.ts#L84">index.ts:84</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> allow<wbr>Dots<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+							</li>
 							<li class="tsd-parameter">
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> case<wbr>Sensitive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
 							</li>
@@ -122,14 +129,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/ae8caf4/src/index.ts#L57">index.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/daf5b3f/src/index.ts#L101">index.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash <code>-</code> and underscore <code>_</code>)
 										It will allow uppercase ascii7 letters if option <code>caseSensitive</code> is false
-									It also removes multiple dashes in a row and replaces them for a single dash if the option is given</p>
+										It will allow dot <code>.</code> if option <code>allowDots</code> is true
+									It also removes multiple dashes in a row and replaces them for a single dash unless option <code>replaceManyDashes: false</code> is given</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt data-tag-name="see">see</dt>
@@ -137,6 +145,12 @@
 									</dd>
 									<dt data-tag-name="see">see</dt>
 									<dd data-tag-name="see"><p>cleanKeySimpleCI</p>
+									</dd>
+									<dt data-tag-name="see">see</dt>
+									<dd data-tag-name="see"><p>cleanKeySimpleWithDots</p>
+									</dd>
+									<dt data-tag-name="see">see</dt>
+									<dd data-tag-name="see"><p>cleanKeySimpleCIWithDots</p>
 									</dd>
 								</dl>
 							</div>
@@ -157,19 +171,19 @@
 					<a name="cleankeyci" class="tsd-anchor"></a>
 					<h3>clean<wbr>KeyCI</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">clean<wbr>KeyCI<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, opts<span class="tsd-signature-symbol">?: </span><a href="globals.html#cleankeyoptions" class="tsd-signature-type">CleanKeyOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">clean<wbr>KeyCI<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, opts<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#cleankeyoptions" class="tsd-signature-type">CleanKeyOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"caseSensitive"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/ae8caf4/src/index.ts#L72">index.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/daf5b3f/src/index.ts#L118">index.ts:118</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Removes bad chars for a string key (all except number, uppercase and lowercase ascii7 letters, dash <code>-</code> and underscore <code>_</code>)
-									It also removes multiple dashes in a row and replaces them for a single dash if the option is given</p>
+									It also removes multiple dashes in a row and replaces them for a single dash unless option <code>replaceManyDashes: false</code> is given</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt data-tag-name="see">see</dt>
@@ -183,7 +197,44 @@
 									<h5>s: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> opts: <a href="globals.html#cleankeyoptions" class="tsd-signature-type">CleanKeyOptions</a><span class="tsd-signature-symbol"> = {}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> opts: <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#cleankeyoptions" class="tsd-signature-type">CleanKeyOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"caseSensitive"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = {}</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="cleankeyciwithdots" class="tsd-anchor"></a>
+					<h3>clean<wbr>KeyCIWith<wbr>Dots</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">clean<wbr>KeyCIWith<wbr>Dots<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, opts<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#cleankeyoptions" class="tsd-signature-type">CleanKeyOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"caseSensitive"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"allowDots"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/daf5b3f/src/index.ts#L144">index.ts:144</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes bad chars for a string key (all except number, uppercase and lowercase ascii7 letters, dash <code>-</code> and underscore <code>_</code> and dot <code>.</code>)
+									It also removes multiple dashes in a row and replaces them for a single dash unless option <code>replaceManyDashes: false</code> is given</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt data-tag-name="see">see</dt>
+									<dd data-tag-name="see"><p>cleanKey</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>s: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> opts: <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#cleankeyoptions" class="tsd-signature-type">CleanKeyOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"caseSensitive"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"allowDots"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -200,7 +251,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/ae8caf4/src/index.ts#L31">index.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/daf5b3f/src/index.ts#L41">index.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -230,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/ae8caf4/src/index.ts#L40">index.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/daf5b3f/src/index.ts#L50">index.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -244,6 +295,104 @@
 									<h5>s: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="cleankeysimpleciwithdots" class="tsd-anchor"></a>
+					<h3>clean<wbr>Key<wbr>SimpleCIWith<wbr>Dots</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">clean<wbr>Key<wbr>SimpleCIWith<wbr>Dots<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/daf5b3f/src/index.ts#L68">index.ts:68</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes bad chars for a string key (all except number, uppercase and lowercase ascii7 letters, dash <code>-</code> and underscore <code>_</code> and dot <code>.</code>)</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>s: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="cleankeysimplewithdots" class="tsd-anchor"></a>
+					<h3>clean<wbr>Key<wbr>Simple<wbr>With<wbr>Dots</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">clean<wbr>Key<wbr>Simple<wbr>With<wbr>Dots<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/daf5b3f/src/index.ts#L59">index.ts:59</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash <code>-</code> and underscore <code>_</code> and dot <code>.</code>)</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>s: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="cleankeywithdots" class="tsd-anchor"></a>
+					<h3>clean<wbr>Key<wbr>With<wbr>Dots</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">clean<wbr>Key<wbr>With<wbr>Dots<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, opts<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#cleankeyoptions" class="tsd-signature-type">CleanKeyOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"allowDots"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plandek-utils/ts-clean-key/blob/daf5b3f/src/index.ts#L132">index.ts:132</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash <code>-</code> and underscore <code>_</code> and dot <code>.</code>)
+										It also removes multiple dashes in a row and replaces them for a single dash unless option <code>replaceManyDashes: false</code> is given
+									It will allow uppercase ascii7 letters if option <code>caseSensitive: false</code> is given</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt data-tag-name="see">see</dt>
+									<dd data-tag-name="see"><p>cleanKey</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>s: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> opts: <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#cleankeyoptions" class="tsd-signature-type">CleanKeyOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"allowDots"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -273,10 +422,22 @@
 						<a href="globals.html#cleankeyci" class="tsd-kind-icon">clean<wbr>KeyCI</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#cleankeyciwithdots" class="tsd-kind-icon">clean<wbr>KeyCIWith<wbr>Dots</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#cleankeysimple" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#cleankeysimpleci" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCI</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#cleankeysimpleciwithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCIWith<wbr>Dots</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#cleankeysimplewithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple<wbr>With<wbr>Dots</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#cleankeywithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>With<wbr>Dots</a>
 					</li>
 				</ul>
 			</nav>
