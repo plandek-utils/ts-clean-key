@@ -11,9 +11,11 @@
 
 Removes bad chars for a string key (all except number `0-9`, lowercase ascii7 letters `a-z`, dash `-` and underscore `_`).
 
-It also removes multiple dashes in a row and replaces them for a single dash, which  can be [optionally disabled](#cleankeysimple-and-replacemanydashes-option).
+It also removes multiple dashes in a row and replaces them for a single dash, which can be [optionally disabled](#replacemanydashes-option-and-functions).
 
-It can optionally also allow uppercase ascii7 letters `A-Z` [with a toggle](#cleankeysimpleci-and-cleankeyci-and-casesensitive-option).
+It can optionally also allow uppercase ascii7 letters `A-Z` [with a toggle](#casesensitive-option-and-functions).
+
+It can optionally also allow dots `.` [with a toggle](#allowdots-option-and-functions).
 
 ## Installation
 
@@ -29,23 +31,25 @@ cleanKey("  a - b"); // => "a-b"
 cleanKey("  some Stuff 🚀 \n ñaaa --- a"); // => "sometuffaaa-a"
 ```
 
-### `cleanKeySimple` and `replaceManyDashes` option
+### `replaceManyDashes` option and functions
 
 By default, `cleanKey` will replace many resulting dashes for a single dash. You can disable this behaviour by passing `replaceManyDashes: false` in the optional options argument, or by using the `cleanKeySimple()` function.
 
 ```typescript
-import { cleanKey } from "@plandek-utils/ts-clean-key";
+import { cleanKey, cleanKeySimple } from "@plandek-utils/ts-clean-key";
+
 cleanKey(" something-is---here "); // => "something-is-here"
 cleanKey(" something-is---here ", { replaceManyDashes: false }); // => "something-is---here"
 cleanKeySimple(" something-is---here "); // => "something-is---here"
 ```
 
-### `cleanKeySimpleCI()` and `cleanKeyCI()` and `caseSensitive` option
+### `caseSensitive` option and functions
 
 By default, `cleanKey` will not allow uppercase ascii7 letters `A-Z`. You can change this behaviour by passing `caseSensitive: false` in the optional second argument, or by using the `cleanKeyCI()` or `cleanKeySimpleCI()` functions
 
 ```typescript
-import { cleanKey } from "@plandek-utils/ts-clean-key";
+import { cleanKey, cleanKeyCI, cleanKeySimpleCI } from "@plandek-utils/ts-clean-key";
+
 cleanKey(" Remove---Me "); // => "emove-e"
 cleanKey(" Remove---Me ", { caseSensitive: false }); // => "Remove-Me"
 cleanKeyCI(" Remove---Me "); // => "Remove-Me"
@@ -53,6 +57,38 @@ cleanKeyCI(" Remove---Me "); // => "Remove-Me"
 cleanKey(" Remove---Me ", { replaceManyDashes: false }); // => "emove---e"
 cleanKey(" Remove---Me ", { replaceManyDashes: false, caseSensitive: false }); // => "Remove---Me"
 cleanKeySimpleCI(" Remove---Me "); // => "Remove---Me"
+```
+
+### `allowDots` option and functions
+
+By default, `cleanKey` will not allow dots `.`. You can change this behaviour by passing `allowDots: true` in the optional second argument, or by using the `cleanKeyCIWithDots()`, `cleanKeyWithDots()`, `cleanKeySimpleWithDot()` or `cleanKeySimpleCIWithDots()` functions.
+
+```typescript
+import {
+  cleanKey,
+  cleanKeyCI,
+  cleanKeySimpleWithDots,
+  cleanKeySimpleCIWithDots,
+  cleanKeyWithDots,
+} from "@plandek-utils/ts-clean-key";
+
+cleanKey(" Re.move---Me "); // => "emove-e"
+
+cleanKey(" Re.move---Me ", { allowDots: true }); // => "e.move-e"
+cleanKeyWithDots(" Re.move---Me "); // => "e.move-e"
+
+cleanKey(" Re.move---Me ", { caseSensitive: false, allowDots: true }); // => "Re.move-Me"
+cleanKeyWithDots(" Re.move---Me ", { caseSensitive: false }); // => "Re.move-Me"
+cleanKeyCI(" Re.move---Me ", { allowDots: true }); // => "Re.move-Me"
+
+cleanKey(" Re.move---Me ", { replaceManyDashes: false, allowDots: true }); // => "e.move---e"
+cleanKeyWithDots(" Re.move---Me ", { replaceManyDashes: false }); // => "e.move---e"
+cleanKeySimpleWithDots(" Re.move---Me "); // => "e.move---e"
+
+cleanKey(" Re.move---Me ", { caseSensitive: false, allowDots: true, replaceManyDashes: false }); // => "Re.move---Me"
+cleanKeyWithDots(" Re.move---Me ", { caseSensitive: false, replaceManyDashes: false }); // => "Re.move---Me"
+cleanKeyCI(" Re.move---Me ", { allowDots: true, replaceManyDashes: false }); // => "Re.move---Me"
+cleanKeySimpleCIWithDots(" Re.move---Me "); // => "Re.move---Me"
 ```
 
 ## Breaking changes warning
