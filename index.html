@@ -41,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -52,11 +50,6 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
 			<h1>@plandek-utils/ts-clean-key</h1>
 		</div>
 	</div>
@@ -85,71 +78,76 @@
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { cleanKey } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">cleanKey</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-cleanKey(<span class="hljs-string">""</span>); <span class="hljs-comment">// =&gt; ""</span>
-cleanKey(<span class="hljs-string">"  a - b"</span>); <span class="hljs-comment">// =&gt; "a-b"</span>
-cleanKey(<span class="hljs-string">"  some Stuff 🚀 \n ñaaa --- a"</span>); <span class="hljs-comment">// =&gt; "sometuffaaa-a"</span></code></pre>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;  a - b&quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;a-b&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;  some Stuff 🚀 </span><span style="color: #EE0000">\n</span><span style="color: #A31515"> ñaaa --- a&quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;sometuffaaa-a&quot;</span>
+</code></pre>
 				<a href="#replacemanydashes-option-and-functions" id="replacemanydashes-option-and-functions" style="color: inherit; text-decoration: none;">
 					<h3><code>replaceManyDashes</code> option and functions</h3>
 				</a>
 				<p>By default, <code>cleanKey</code> will replace many resulting dashes for a single dash. You can disable this behaviour by passing <code>replaceManyDashes: false</code> in the optional options argument, or by using the <code>cleanKeySimple()</code> function.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { cleanKey, cleanKeySimple } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">cleanKey</span><span style="color: #000000">, </span><span style="color: #001080">cleanKeySimple</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-cleanKey(<span class="hljs-string">" something-is---here "</span>); <span class="hljs-comment">// =&gt; "something-is-here"</span>
-cleanKey(<span class="hljs-string">" something-is---here "</span>, { replaceManyDashes: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "something-is---here"</span>
-cleanKeySimple(<span class="hljs-string">" something-is---here "</span>); <span class="hljs-comment">// =&gt; "something-is---here"</span></code></pre>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; something-is---here &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;something-is-here&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; something-is---here &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;something-is---here&quot;</span>
+<span style="color: #795E26">cleanKeySimple</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; something-is---here &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;something-is---here&quot;</span>
+</code></pre>
 				<a href="#casesensitive-option-and-functions" id="casesensitive-option-and-functions" style="color: inherit; text-decoration: none;">
 					<h3><code>caseSensitive</code> option and functions</h3>
 				</a>
 				<p>By default, <code>cleanKey</code> will not allow uppercase ascii7 letters <code>A-Z</code>. You can change this behaviour by passing <code>caseSensitive: false</code> in the optional second argument, or by using the <code>cleanKeyCI()</code> or <code>cleanKeySimpleCI()</code> functions</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { cleanKey, cleanKeyCI, cleanKeySimpleCI } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">cleanKey</span><span style="color: #000000">, </span><span style="color: #001080">cleanKeyCI</span><span style="color: #000000">, </span><span style="color: #001080">cleanKeySimpleCI</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-cleanKey(<span class="hljs-string">" Remove---Me "</span>); <span class="hljs-comment">// =&gt; "emove-e"</span>
-cleanKey(<span class="hljs-string">" Remove---Me "</span>, { caseSensitive: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "Remove-Me"</span>
-cleanKeyCI(<span class="hljs-string">" Remove---Me "</span>); <span class="hljs-comment">// =&gt; "Remove-Me"</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;emove-e&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Remove-Me&quot;</span>
+<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Remove-Me&quot;</span>
 
-cleanKey(<span class="hljs-string">" Remove---Me "</span>, { replaceManyDashes: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "emove---e"</span>
-cleanKey(<span class="hljs-string">" Remove---Me "</span>, { replaceManyDashes: <span class="hljs-literal">false</span>, caseSensitive: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "Remove---Me"</span>
-cleanKeySimpleCI(<span class="hljs-string">" Remove---Me "</span>); <span class="hljs-comment">// =&gt; "Remove---Me"</span></code></pre>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;emove---e&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Remove---Me&quot;</span>
+<span style="color: #795E26">cleanKeySimpleCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Remove---Me&quot;</span>
+</code></pre>
 				<a href="#allowdots-option-and-functions" id="allowdots-option-and-functions" style="color: inherit; text-decoration: none;">
 					<h3><code>allowDots</code> option and functions</h3>
 				</a>
 				<p>By default, <code>cleanKey</code> will not allow dots <code>.</code>. You can change this behaviour by passing <code>allowDots: true</code> in the optional second argument, or by using the <code>cleanKeyCIWithDots()</code>, <code>cleanKeyWithDots()</code>, <code>cleanKeySimpleWithDot()</code> or <code>cleanKeySimpleCIWithDots()</code> functions.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {
-  cleanKey,
-  cleanKeyCI,
-  cleanKeySimpleWithDots,
-  cleanKeySimpleCIWithDots,
-  cleanKeyWithDots,
-} <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKey</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKeyCI</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleWithDots</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleCIWithDots</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKeyWithDots</span><span style="color: #000000">,</span>
+<span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-cleanKey(<span class="hljs-string">" Re.move---Me "</span>); <span class="hljs-comment">// =&gt; "emove-e"</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;emove-e&quot;</span>
 
-cleanKey(<span class="hljs-string">" Re.move---Me "</span>, { allowDots: <span class="hljs-literal">true</span> }); <span class="hljs-comment">// =&gt; "e.move-e"</span>
-cleanKeyWithDots(<span class="hljs-string">" Re.move---Me "</span>); <span class="hljs-comment">// =&gt; "e.move-e"</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move-e&quot;</span>
+<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.move-e&quot;</span>
 
-cleanKey(<span class="hljs-string">" Re.move---Me "</span>, { caseSensitive: <span class="hljs-literal">false</span>, allowDots: <span class="hljs-literal">true</span> }); <span class="hljs-comment">// =&gt; "Re.move-Me"</span>
-cleanKeyWithDots(<span class="hljs-string">" Re.move---Me "</span>, { caseSensitive: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "Re.move-Me"</span>
-cleanKeyCI(<span class="hljs-string">" Re.move---Me "</span>, { allowDots: <span class="hljs-literal">true</span> }); <span class="hljs-comment">// =&gt; "Re.move-Me"</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
+<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
+<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
 
-cleanKey(<span class="hljs-string">" Re.move---Me "</span>, { replaceManyDashes: <span class="hljs-literal">false</span>, allowDots: <span class="hljs-literal">true</span> }); <span class="hljs-comment">// =&gt; "e.move---e"</span>
-cleanKeyWithDots(<span class="hljs-string">" Re.move---Me "</span>, { replaceManyDashes: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "e.move---e"</span>
-cleanKeySimpleWithDots(<span class="hljs-string">" Re.move---Me "</span>); <span class="hljs-comment">// =&gt; "e.move---e"</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
+<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
+<span style="color: #795E26">cleanKeySimpleWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
 
-cleanKey(<span class="hljs-string">" Re.move---Me "</span>, { caseSensitive: <span class="hljs-literal">false</span>, allowDots: <span class="hljs-literal">true</span>, replaceManyDashes: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "Re.move---Me"</span>
-cleanKeyWithDots(<span class="hljs-string">" Re.move---Me "</span>, { caseSensitive: <span class="hljs-literal">false</span>, replaceManyDashes: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "Re.move---Me"</span>
-cleanKeyCI(<span class="hljs-string">" Re.move---Me "</span>, { allowDots: <span class="hljs-literal">true</span>, replaceManyDashes: <span class="hljs-literal">false</span> }); <span class="hljs-comment">// =&gt; "Re.move---Me"</span>
-cleanKeySimpleCIWithDots(<span class="hljs-string">" Re.move---Me "</span>); <span class="hljs-comment">// =&gt; "Re.move---Me"</span></code></pre>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+<span style="color: #795E26">cleanKeySimpleCIWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+</code></pre>
 				<a href="#breaking-changes-warning" id="breaking-changes-warning" style="color: inherit; text-decoration: none;">
 					<h2>Breaking changes warning</h2>
 				</a>
 				<p>Since v2.0 the <code>cleanKey</code> is not the default export. Instead both <code>cleanKey</code> and <code>cleanKeySimple</code> are named exports.</p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// v1.x</span>
-<span class="hljs-keyword">import</span> cleanKey <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;
+				<pre><code class="language-typescript"><span style="color: #008000">// v1.x</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">cleanKey</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-<span class="hljs-comment">// v2.x</span>
-<span class="hljs-keyword">import</span> { cleanKey } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plandek-utils/ts-clean-key"</span>;</code></pre>
+<span style="color: #008000">// v2.x</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">cleanKey</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
+</code></pre>
 				<a href="#development-commits-versioning-and-publishing" id="development-commits-versioning-and-publishing" style="color: inherit; text-decoration: none;">
 					<h2>Development, Commits, versioning and publishing</h2>
 				</a>
@@ -160,57 +158,63 @@ cleanKeySimpleCIWithDots(<span class="hljs-string">" Re.move---Me "</span>); <sp
 							<h3>Commits and CHANGELOG</h3>
 						</a>
 						<p>For commits, you should use <a href="https://github.com/commitizen/cz-cli"><code>commitizen</code></a></p>
-						<pre><code class="language-sh">yarn global add commitizen
+						<pre><code class="language-sh"><span style="color: #000000">yarn global add commitizen</span>
 
-<span class="hljs-comment">#commit your changes:</span>
-git cz</code></pre>
+<span style="color: #008000">#commit your changes:</span>
+<span style="color: #000000">git cz</span>
+</code></pre>
 						<p>As typescript-starter docs state:</p>
 						<p>This project is tooled for <a href="https://github.com/conventional-changelog/conventional-changelog">conventional changelog</a> to make managing releases easier. See the <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> documentation for more information on the workflow, or <a href="CHANGELOG.md"><code>CHANGELOG.md</code></a> for an example.</p>
-						<pre><code class="language-sh"><span class="hljs-comment"># bump package.json version, update CHANGELOG.md, git tag the release</span>
-yarn run version</code></pre>
+						<pre><code class="language-sh"><span style="color: #008000"># bump package.json version, update CHANGELOG.md, git tag the release</span>
+<span style="color: #000000">yarn run version</span>
+</code></pre>
 						<p>You may find a tool like <a href="https://github.com/bitjson/wip"><strong><code>wip</code></strong></a> helpful for managing work in progress before you&#39;re ready to create a meaningful commit.</p>
 						<a href="#creating-the-first-version" id="creating-the-first-version" style="color: inherit; text-decoration: none;">
 							<h3>Creating the first version</h3>
 						</a>
 						<p>Once you are ready to create the first version, run the following (note that <code>reset</code> is destructive and will remove all files not in the git repo from the directory).</p>
-						<pre><code class="language-sh"><span class="hljs-comment"># Reset the repo to the latest commit and build everything</span>
-yarn run reset &amp;&amp; yarn run <span class="hljs-built_in">test</span> &amp;&amp; yarn run doc:html
+						<pre><code class="language-sh"><span style="color: #008000"># Reset the repo to the latest commit and build everything</span>
+<span style="color: #000000">yarn run reset &amp;&amp; yarn run </span><span style="color: #795E26">test</span><span style="color: #000000"> &amp;&amp; yarn run doc:html</span>
 
-<span class="hljs-comment"># Then version it with standard-version options. e.g.:</span>
-<span class="hljs-comment"># don't bump package.json version</span>
-yarn run version -- --first-release
+<span style="color: #008000"># Then version it with standard-version options. e.g.:</span>
+<span style="color: #008000"># don&#039;t bump package.json version</span>
+<span style="color: #000000">yarn run version -- --first-release</span>
 
-<span class="hljs-comment"># Other popular options include:</span>
+<span style="color: #008000"># Other popular options include:</span>
 
-<span class="hljs-comment"># PGP sign it:</span>
-<span class="hljs-comment"># $ yarn run version -- --sign</span>
+<span style="color: #008000"># PGP sign it:</span>
+<span style="color: #008000"># $ yarn run version -- --sign</span>
 
-<span class="hljs-comment"># alpha release:</span>
-<span class="hljs-comment"># $ yarn run version -- --prerelease alpha</span></code></pre>
+<span style="color: #008000"># alpha release:</span>
+<span style="color: #008000"># $ yarn run version -- --prerelease alpha</span>
+</code></pre>
 						<p>And after that, remember to <a href="#publish-the-docs">publish the docs</a>.</p>
 						<p>And finally push the new tags to github and publish the package to npm.</p>
-						<pre><code class="language-sh"><span class="hljs-comment"># Push to git</span>
-git push --follow-tags origin master
+						<pre><code class="language-sh"><span style="color: #008000"># Push to git</span>
+<span style="color: #000000">git push --follow-tags origin master</span>
 
-<span class="hljs-comment"># Publish to NPM (allowing public access, required if the package name is namespaced like `@somewhere/some-lib`)</span>
-yarn publish --access public</code></pre>
+<span style="color: #008000"># Publish to NPM (allowing public access, required if the package name is namespaced like `@somewhere/some-lib`)</span>
+<span style="color: #000000">yarn publish --access public</span>
+</code></pre>
 						<a href="#publish-the-docs" id="publish-the-docs" style="color: inherit; text-decoration: none;">
 							<h3>Publish the Docs</h3>
 						</a>
-						<pre><code class="language-sh">yarn run doc:html &amp;&amp; yarn run doc:publish</code></pre>
+						<pre><code class="language-sh"><span style="color: #000000">yarn run doc:html &amp;&amp; yarn run doc:publish</span>
+</code></pre>
 						<p>This will generate the docs and publish them in github pages.</p>
 						<a href="#generate-a-version" id="generate-a-version" style="color: inherit; text-decoration: none;">
 							<h3>Generate a version</h3>
 						</a>
 						<p>There is a single yarn command for preparing a new release. See <a href="https://github.com/bitjson/typescript-starter#one-step-publish-preparation-script">One-step publish preparation script in TypeScript-Starter</a></p>
-						<pre><code class="language-sh"><span class="hljs-comment"># Prepare a standard release</span>
-yarn prepare-release
+						<pre><code class="language-sh"><span style="color: #008000"># Prepare a standard release</span>
+<span style="color: #000000">yarn prepare-release</span>
 
-<span class="hljs-comment"># Push to git</span>
-git push --follow-tags origin master
+<span style="color: #008000"># Push to git</span>
+<span style="color: #000000">git push --follow-tags origin master</span>
 
-<span class="hljs-comment"># Publish to NPM (allowing public access, required if the package name is namespaced like `@somewhere/some-lib`)</span>
-yarn publish --access public</code></pre>
+<span style="color: #008000"># Publish to NPM (allowing public access, required if the package name is namespaced like `@somewhere/some-lib`)</span>
+<span style="color: #000000">yarn publish --access public</span>
+</code></pre>
 					</p>
 				</details>
 			</div>
@@ -218,40 +222,39 @@ yarn publish --access public</code></pre>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li><a href="index.html" class="title">README</a></li>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#cleankeyoptions" class="tsd-kind-icon">Clean<wbr>Key<wbr>Options</a>
+						<a href="modules.html#cleankeyoptions" class="tsd-kind-icon">Clean<wbr>Key<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#cleankey" class="tsd-kind-icon">clean<wbr>Key</a>
+						<a href="modules.html#cleankey" class="tsd-kind-icon">clean<wbr>Key</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#cleankeyci" class="tsd-kind-icon">clean<wbr>KeyCI</a>
+						<a href="modules.html#cleankeyci" class="tsd-kind-icon">clean<wbr>KeyCI</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#cleankeyciwithdots" class="tsd-kind-icon">clean<wbr>KeyCIWith<wbr>Dots</a>
+						<a href="modules.html#cleankeyciwithdots" class="tsd-kind-icon">clean<wbr>KeyCIWith<wbr>Dots</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#cleankeysimple" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple</a>
+						<a href="modules.html#cleankeysimple" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#cleankeysimpleci" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCI</a>
+						<a href="modules.html#cleankeysimpleci" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCI</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#cleankeysimpleciwithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCIWith<wbr>Dots</a>
+						<a href="modules.html#cleankeysimpleciwithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCIWith<wbr>Dots</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#cleankeysimplewithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple<wbr>With<wbr>Dots</a>
+						<a href="modules.html#cleankeysimplewithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple<wbr>With<wbr>Dots</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#cleankeywithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>With<wbr>Dots</a>
+						<a href="modules.html#cleankeywithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>With<wbr>Dots</a>
 					</li>
 				</ul>
 			</nav>
