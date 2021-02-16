@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/plandek-utils/ts-clean-key/compare/v2.2.1...v3.0.0) (2021-02-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* `allowDots` options is replaced with the `mode` option.
+
+### Features
+
+* replace `allowDots` option with a `mode` option ([5f3e428](https://github.com/plandek-utils/ts-clean-key/commit/5f3e428b6a7d0353469557d2b264523b875c8a64))
+
 ### [2.2.1](https://github.com/plandek-utils/ts-clean-key/compare/v2.2.0...v2.2.1) (2021-02-05)
 
 ## [2.2.0](https://github.com/plandek-utils/ts-clean-key/compare/v2.1.0...v2.2.0) (2020-05-28)
