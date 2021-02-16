@@ -7,6 +7,11 @@ import {
   cleanKeySimpleWithDots,
   cleanKeyWithDots,
   cleanKeyCIWithDots,
+  cleanKeySimpleCIWithSpecials,
+  cleanKeySimpleWithSpecials,
+  cleanKeyWithSpecials,
+  cleanKeyCIWithSpecials,
+  CharAllowanceMode,
 } from "..";
 
 describe("default", () => {
@@ -18,8 +23,8 @@ describe("default", () => {
     expect(cleanKey("  a - b")).toEqual("a-b");
   });
 
-  it('cleanKey("  some S.tuff 🚀 \\n ñaaa --- a")', () => {
-    expect(cleanKey("  some S.tuff 🚀 \n ñaaa --- a")).toEqual("sometuffaaa-a");
+  it('cleanKey("  s|/:ome S.tuff 🚀 \\n ñaaa --- a")', () => {
+    expect(cleanKey("  s|/:ome S.tuff 🚀 \n ñaaa --- a")).toEqual("sometuffaaa-a");
   });
 });
 
@@ -89,15 +94,15 @@ describe("dots", () => {
     });
   });
 
-  describe("cleanKey(key, { allowDots: true })", () => {
+  describe("cleanKey(key, { mode: CharAllowanceMode.Dots })", () => {
     it("allows dots, removes uppercase letters, and multiple dashes", () => {
-      expect(cleanKey(" Re.move---Me ", { allowDots: true })).toEqual("e.move-e");
+      expect(cleanKey(" Re.move---Me ", { mode: CharAllowanceMode.Dots })).toEqual("e.move-e");
     });
   });
 
-  describe("cleanKey(key, { caseSensitive: false, allowDots: true })", () => {
+  describe("cleanKey(key, { caseSensitive: false, mode: CharAllowanceMode.Dots })", () => {
     it("allows uppercase letters and dots, and multiple", () => {
-      expect(cleanKey(" Re.move---Me ", { caseSensitive: false, allowDots: true })).toEqual("Re.move-Me");
+      expect(cleanKey(" Re.move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots })).toEqual("Re.move-Me");
     });
   });
 
@@ -107,9 +112,9 @@ describe("dots", () => {
     });
   });
 
-  describe("cleanKeyCI(key, { allowDots: true })", () => {
+  describe("cleanKeyCI(key, { mode: CharAllowanceMode.Dots })", () => {
     it("allows uppercase letters and dots, removes multiple dashes", () => {
-      expect(cleanKeyCI(" Re.move---Me ", { allowDots: true })).toEqual("Re.move-Me");
+      expect(cleanKeyCI(" Re.move---Me ", { mode: CharAllowanceMode.Dots })).toEqual("Re.move-Me");
     });
   });
 
@@ -157,6 +162,93 @@ describe("dots", () => {
   describe("cleanKeySimpleCIWithDots(key)", () => {
     it("allows uppercase letters and allows multiple dashes and dots", () => {
       expect(cleanKeySimpleCIWithDots(" Re.move---Me ")).toEqual("Re.move---Me");
+    });
+  });
+});
+
+describe("specials", () => {
+  describe("cleanKey(key)", () => {
+    it("removes uppercase letters, specials and multiple dashes", () => {
+      expect(cleanKey(" Re.move---Me ")).toEqual("emove-e");
+    });
+  });
+
+  describe("cleanKey(key, { caseSensitive: false })", () => {
+    it("allows uppercase letters, removes specials and multiple", () => {
+      expect(cleanKey(" Re.move---Me ", { caseSensitive: false })).toEqual("Remove-Me");
+    });
+  });
+
+  describe("cleanKey(key, { mode: CharAllowanceMode.Specials })", () => {
+    it("allows specials, removes uppercase letters, and multiple dashes", () => {
+      expect(cleanKey(" Re.move---Me ", { mode: CharAllowanceMode.Specials })).toEqual("e.move-e");
+    });
+  });
+
+  describe("cleanKey(key, { caseSensitive: false, mode: CharAllowanceMode.Specials })", () => {
+    it("allows uppercase letters and specials, and multiple", () => {
+      expect(cleanKey(" Re.move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials })).toEqual(
+        "Re.move-Me"
+      );
+    });
+  });
+
+  describe("cleanKeyCI(key)", () => {
+    it("allows uppercase letters, removes specials and removes multiple dashes", () => {
+      expect(cleanKeyCI(" Re.move---Me ")).toEqual("Remove-Me");
+    });
+  });
+
+  describe("cleanKeyCI(key, { mode: CharAllowanceMode.Specials })", () => {
+    it("allows uppercase letters and specials, removes multiple dashes", () => {
+      expect(cleanKeyCI(" Re.move---Me ", { mode: CharAllowanceMode.Specials })).toEqual("Re.move-Me");
+    });
+  });
+
+  describe("cleanKeyWithSpecials(key)", () => {
+    it("allows specials, removes uppercase letters and specials, and multiple dashes", () => {
+      expect(cleanKeyWithSpecials(" Re.move---Me ")).toEqual("e.move-e");
+    });
+  });
+
+  describe("cleanKeyWithSpecials(key, { caseSensitive: false })", () => {
+    it("allows specials, removes uppercase letters and specials, and multiple dashes", () => {
+      expect(cleanKeyWithSpecials(" Re.move---Me ", { caseSensitive: false })).toEqual("Re.move-Me");
+    });
+  });
+
+  describe("cleanKeyWithSpecials(key, { replaceManyDashes: false })", () => {
+    it("allows uppercase letters and specials, allows multiple dashes", () => {
+      expect(cleanKeyWithSpecials(" Re.move---Me ", { replaceManyDashes: false })).toEqual("e.move---e");
+    });
+  });
+
+  describe("cleanKeyCIWithSpecials(key)", () => {
+    it("allows uppercase letters and specials, removes multiple dashes", () => {
+      expect(cleanKeyCIWithSpecials(" Re.move---Me ")).toEqual("Re.move-Me");
+    });
+  });
+
+  describe("cleanKeySimple(key)", () => {
+    it("allows multiple dashes, removes specials and uppercase letters", () => {
+      expect(cleanKeySimple(" Re.move---Me ")).toEqual("emove---e");
+    });
+  });
+
+  describe("cleanKeySimpleCI(key)", () => {
+    it("allows uppercase letters and allows multiple dashes, removes specials", () => {
+      expect(cleanKeySimpleCI(" Re.move---Me ")).toEqual("Remove---Me");
+    });
+  });
+
+  describe("cleanKeySimpleWithSpecials(key)", () => {
+    it("removes uppercase letters, allows multiple dashes and specials", () => {
+      expect(cleanKeySimpleWithSpecials(" Re.move---Me ")).toEqual("e.move---e");
+    });
+  });
+  describe("cleanKeySimpleCIWithSpecials(key)", () => {
+    it("allows uppercase letters and allows multiple dashes and specials", () => {
+      expect(cleanKeySimpleCIWithSpecials(" Re.move---Me ")).toEqual("Re.move---Me");
     });
   });
 });
@@ -236,27 +328,61 @@ describe("test examples in README", () => {
     expect(cleanKeySimpleCI(" Remove---Me ")).toEqual("Remove---Me");
   });
 
-  it("allowDots", () => {
-    expect(cleanKey(" Re.move---Me ")).toEqual("emove-e");
+  it("dots and special chars", () => {
+    expect(cleanKey(" Re.|/:move---Me ")).toEqual("emove-e");
 
-    expect(cleanKey(" Re.move---Me ", { allowDots: true })).toEqual("e.move-e");
-    expect(cleanKeyWithDots(" Re.move---Me ")).toEqual("e.move-e");
+    expect(cleanKey(" Re.|/:move---Me ", { mode: CharAllowanceMode.Dots })).toEqual("e.move-e");
+    expect(cleanKeyWithDots(" Re.|/:move---Me ")).toEqual("e.move-e");
 
-    expect(cleanKey(" Re.move---Me ", { caseSensitive: false, allowDots: true })).toEqual("Re.move-Me");
-    expect(cleanKeyWithDots(" Re.move---Me ", { caseSensitive: false })).toEqual("Re.move-Me");
-    expect(cleanKeyCI(" Re.move---Me ", { allowDots: true })).toEqual("Re.move-Me");
+    expect(cleanKey(" Re.|/:move---Me ", { mode: CharAllowanceMode.Specials })).toEqual("e.|/:move-e");
+    expect(cleanKeyWithSpecials(" Re.|/:move---Me ")).toEqual("e.|/:move-e");
 
-    expect(cleanKey(" Re.move---Me ", { replaceManyDashes: false, allowDots: true })).toEqual("e.move---e");
-    expect(cleanKeyWithDots(" Re.move---Me ", { replaceManyDashes: false })).toEqual("e.move---e");
-    expect(cleanKeySimpleWithDots(" Re.move---Me ")).toEqual("e.move---e");
+    expect(cleanKey(" Re.|/:move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots })).toEqual("Re.move-Me");
+    expect(cleanKeyWithDots(" Re.|/:move---Me ", { caseSensitive: false })).toEqual("Re.move-Me");
+    expect(cleanKeyCI(" Re.|/:move---Me ", { mode: CharAllowanceMode.Dots })).toEqual("Re.move-Me");
 
-    expect(cleanKey(" Re.move---Me ", { caseSensitive: false, allowDots: true, replaceManyDashes: false })).toEqual(
+    expect(cleanKey(" Re.|/:move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials })).toEqual(
+      "Re.|/:move-Me"
+    );
+    expect(cleanKeyWithSpecials(" Re.|/:move---Me ", { caseSensitive: false })).toEqual("Re.|/:move-Me");
+    expect(cleanKeyCI(" Re.|/:move---Me ", { mode: CharAllowanceMode.Specials })).toEqual("Re.|/:move-Me");
+
+    expect(cleanKey(" Re.|/:move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Dots })).toEqual(
+      "e.move---e"
+    );
+    expect(cleanKeyWithDots(" Re.|/:move---Me ", { replaceManyDashes: false })).toEqual("e.move---e");
+    expect(cleanKeySimpleWithDots(" Re.|/:move---Me ")).toEqual("e.move---e");
+
+    expect(cleanKey(" Re.|/:move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Specials })).toEqual(
+      "e.|/:move---e"
+    );
+    expect(cleanKeyWithSpecials(" Re.|/:move---Me ", { replaceManyDashes: false })).toEqual("e.|/:move---e");
+    expect(cleanKeySimpleWithSpecials(" Re.|/:move---Me ")).toEqual("e.|/:move---e");
+
+    expect(
+      cleanKey(" Re.|/:move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots, replaceManyDashes: false })
+    ).toEqual("Re.move---Me");
+    expect(cleanKeyWithDots(" Re.|/:move---Me ", { caseSensitive: false, replaceManyDashes: false })).toEqual(
       "Re.move---Me"
     );
-    expect(cleanKeyWithDots(" Re.move---Me ", { caseSensitive: false, replaceManyDashes: false })).toEqual(
+    expect(cleanKeyCI(" Re.|/:move---Me ", { mode: CharAllowanceMode.Dots, replaceManyDashes: false })).toEqual(
       "Re.move---Me"
     );
-    expect(cleanKeyCI(" Re.move---Me ", { allowDots: true, replaceManyDashes: false })).toEqual("Re.move---Me");
-    expect(cleanKeySimpleCIWithDots(" Re.move---Me ")).toEqual("Re.move---Me");
+    expect(cleanKeySimpleCIWithDots(" Re.|/:move---Me ")).toEqual("Re.move---Me");
+
+    expect(
+      cleanKey(" Re.|/:move---Me ", {
+        caseSensitive: false,
+        mode: CharAllowanceMode.Specials,
+        replaceManyDashes: false,
+      })
+    ).toEqual("Re.|/:move---Me");
+    expect(cleanKeyWithSpecials(" Re.|/:move---Me ", { caseSensitive: false, replaceManyDashes: false })).toEqual(
+      "Re.|/:move---Me"
+    );
+    expect(cleanKeyCI(" Re.|/:move---Me ", { mode: CharAllowanceMode.Specials, replaceManyDashes: false })).toEqual(
+      "Re.|/:move---Me"
+    );
+    expect(cleanKeySimpleCIWithSpecials(" Re.|/:move---Me ")).toEqual("Re.|/:move---Me");
   });
 });
