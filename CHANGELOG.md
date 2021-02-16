@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/plandek-utils/ts-clean-key/compare/v3.0.0...v4.0.0) (2021-02-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* added `~` to specials
+
+### Features
+
+* added `~` to specials ([1691abb](https://github.com/plandek-utils/ts-clean-key/commit/1691abb19a6bfa38d950fc506036c8dfac57d027))
+
 ## [3.0.0](https://github.com/plandek-utils/ts-clean-key/compare/v2.2.1...v3.0.0) (2021-02-16)
 
 
