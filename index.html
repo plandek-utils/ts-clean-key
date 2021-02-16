@@ -108,38 +108,78 @@
 <span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Remove---Me&quot;</span>
 <span style="color: #795E26">cleanKeySimpleCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Remove---Me&quot;</span>
 </code></pre>
-				<a href="#allowdots-option-and-functions" id="allowdots-option-and-functions" style="color: inherit; text-decoration: none;">
-					<h3><code>allowDots</code> option and functions</h3>
+				<a href="#mode-dots-option-and-functions" id="mode-dots-option-and-functions" style="color: inherit; text-decoration: none;">
+					<h3><code>mode: dots</code> option and functions</h3>
 				</a>
-				<p>By default, <code>cleanKey</code> will not allow dots <code>.</code>. You can change this behaviour by passing <code>allowDots: true</code> in the optional second argument, or by using the <code>cleanKeyCIWithDots()</code>, <code>cleanKeyWithDots()</code>, <code>cleanKeySimpleWithDot()</code> or <code>cleanKeySimpleCIWithDots()</code> functions.</p>
+				<p>By default, <code>cleanKey</code> will not allow dots <code>.</code>. You can change this behaviour by passing <code>mode: CharAllowanceMode.Dots</code> (or <code>mode: &quot;dots&quot;) in the optional second argument, or by using the </code>cleanKeyCIWithDots()<code>, </code>cleanKeyWithDots()<code>, </code>cleanKeySimpleWithDot()<code>or</code>cleanKeySimpleCIWithDots()` functions.</p>
 				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">cleanKey</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">cleanKeyCI</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleWithDots</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleCIWithDots</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">cleanKeyWithDots</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">,</span>
 <span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;emove-e&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;emove-e&quot;</span>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move-e&quot;</span>
-<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.move-e&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move-e&quot;</span>
+<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.move-e&quot;</span>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
-<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
-<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
+<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
+<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
-<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
-<span style="color: #795E26">cleanKeySimpleWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
+<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
+<span style="color: #795E26">cleanKeySimpleWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
-<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
-<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">allowDots:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
-<span style="color: #795E26">cleanKeySimpleCIWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+<span style="color: #795E26">cleanKeySimpleCIWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+</code></pre>
+				<a href="#mode-specials-option-and-functions" id="mode-specials-option-and-functions" style="color: inherit; text-decoration: none;">
+					<h3><code>mode: specials</code> option and functions</h3>
+				</a>
+				<p>Similar to the <code>dots</code> mode, but allowing also pipes <code>|</code>, colons <code>:</code>, and slashes <code>/</code>.
+				You can change this behaviour by passing <code>mode: CharAllowanceMode.Specials</code> (or <code>mode: &quot;specials&quot;) in the optional second argument, or by using the </code>cleanKeyCIWithSpecials()<code>, </code>cleanKeyWithSpecials()<code>, </code>cleanKeySimpleWithDot()<code>or</code>cleanKeySimpleCIWithSpecials()` functions.</p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKey</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKeyCI</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleWithSpecials</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleCIWithSpecials</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">cleanKeyWithSpecials</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">,</span>
+<span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
+
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;emove-e&quot;</span>
+
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.|:/move-e&quot;</span>
+<span style="color: #795E26">cleanKeyWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.|:/move-e&quot;</span>
+
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|:/move-Me&quot;</span>
+<span style="color: #795E26">cleanKeyWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|:/move-Me&quot;</span>
+<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|:/move-Me&quot;</span>
+
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.|:/move---e&quot;</span>
+<span style="color: #795E26">cleanKeyWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.|:/move---e&quot;</span>
+<span style="color: #795E26">cleanKeySimpleWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.|:/move---e&quot;</span>
+
+<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|:/move---Me&quot;</span>
+<span style="color: #795E26">cleanKeyWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|:/move---Me&quot;</span>
+<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|:/move---Me&quot;</span>
+<span style="color: #795E26">cleanKeySimpleCIWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Re.|:/move---Me&quot;</span>
 </code></pre>
 				<a href="#breaking-changes-warning" id="breaking-changes-warning" style="color: inherit; text-decoration: none;">
 					<h2>Breaking changes warning</h2>
+				</a>
+				<a href="#v3x" id="v3x" style="color: inherit; text-decoration: none;">
+					<h3>v3.x</h3>
+				</a>
+				<p>Since v3.0 the <code>allowedDots</code> option was replaced with a <code>mode</code> option that can be <code>strict</code> (default), <code>dots</code>, or <code>specials. The typescript </code>CharAllowanceMode` enum covers the possible modes.</p>
+				<a href="#v2x" id="v2x" style="color: inherit; text-decoration: none;">
+					<h3>v2.x</h3>
 				</a>
 				<p>Since v2.0 the <code>cleanKey</code> is not the default export. Instead both <code>cleanKey</code> and <code>cleanKeySimple</code> are named exports.</p>
 				<pre><code class="language-typescript"><span style="color: #008000">// v1.x</span>
@@ -229,8 +269,32 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/charallowancemode.html" class="tsd-kind-icon">Char<wbr>Allowance<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#charallowancemodeenumvalues" class="tsd-kind-icon">Char<wbr>Allowance<wbr>Mode<wbr>Enum<wbr>Values</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#cleankeyoptions" class="tsd-kind-icon">Clean<wbr>Key<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#invalid_chars" class="tsd-kind-icon">INVALID_<wbr>CHARS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#invalid_chars_ci" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>CI</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#invalid_chars_ci_with_dots" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>CI_<wbr>WITH_<wbr>DOTS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#invalid_chars_ci_with_specials" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>CI_<wbr>WITH_<wbr>SPECIALS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#invalid_chars_with_dots" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>WITH_<wbr>DOTS</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#invalid_chars_with_specials" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>WITH_<wbr>SPECIALS</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#cleankey" class="tsd-kind-icon">clean<wbr>Key</a>
@@ -242,6 +306,9 @@
 						<a href="modules.html#cleankeyciwithdots" class="tsd-kind-icon">clean<wbr>KeyCIWith<wbr>Dots</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#cleankeyciwithspecials" class="tsd-kind-icon">clean<wbr>KeyCIWith<wbr>Specials</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#cleankeysimple" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -251,10 +318,19 @@
 						<a href="modules.html#cleankeysimpleciwithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCIWith<wbr>Dots</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#cleankeysimpleciwithspecials" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCIWith<wbr>Specials</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#cleankeysimplewithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple<wbr>With<wbr>Dots</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#cleankeysimplewithspecials" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple<wbr>With<wbr>Specials</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#cleankeywithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>With<wbr>Dots</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#cleankeywithspecials" class="tsd-kind-icon">clean<wbr>Key<wbr>With<wbr>Specials</a>
 					</li>
 				</ul>
 			</nav>
