@@ -15,7 +15,7 @@ It also removes multiple dashes in a row and replaces them for a single dash, wh
 
 It can optionally also allow uppercase ascii7 letters `A-Z` [with a toggle](#casesensitive-option-and-functions).
 
-It can optionally also allow dots `.` [with a toggle](#allowdots-option-and-functions).
+It can optionally also allow extra characters, like [dots](#mode-dots-option-and-functions) or other [special characters](#mode-specials-option-and-functions), by using a `mode` option.
 
 ## Installation
 
@@ -73,28 +73,28 @@ import {
   CharAllowanceMode,
 } from "@plandek-utils/ts-clean-key";
 
-cleanKey(" Re.|:/move---Me "); // => "emove-e"
+cleanKey(" Re.|~:/move---Me "); // => "emove-e"
 
-cleanKey(" Re.|:/move---Me ", { mode: CharAllowanceMode.Dots }); // => "e.move-e"
-cleanKeyWithDots(" Re.|:/move---Me "); // => "e.move-e"
+cleanKey(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Dots }); // => "e.move-e"
+cleanKeyWithDots(" Re.|~:/move---Me "); // => "e.move-e"
 
-cleanKey(" Re.|:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots }); // => "Re.move-Me"
-cleanKeyWithDots(" Re.|:/move---Me ", { caseSensitive: false }); // => "Re.move-Me"
-cleanKeyCI(" Re.|:/move---Me ", { mode: CharAllowanceMode.Dots }); // => "Re.move-Me"
+cleanKey(" Re.|~:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots }); // => "Re.move-Me"
+cleanKeyWithDots(" Re.|~:/move---Me ", { caseSensitive: false }); // => "Re.move-Me"
+cleanKeyCI(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Dots }); // => "Re.move-Me"
 
-cleanKey(" Re.|:/move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Dots }); // => "e.move---e"
-cleanKeyWithDots(" Re.|:/move---Me ", { replaceManyDashes: false }); // => "e.move---e"
-cleanKeySimpleWithDots(" Re.|:/move---Me "); // => "e.move---e"
+cleanKey(" Re.|~:/move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Dots }); // => "e.move---e"
+cleanKeyWithDots(" Re.|~:/move---Me ", { replaceManyDashes: false }); // => "e.move---e"
+cleanKeySimpleWithDots(" Re.|~:/move---Me "); // => "e.move---e"
 
-cleanKey(" Re.|:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots, replaceManyDashes: false }); // => "Re.move---Me"
-cleanKeyWithDots(" Re.|:/move---Me ", { caseSensitive: false, replaceManyDashes: false }); // => "Re.move---Me"
-cleanKeyCI(" Re.|:/move---Me ", { mode: CharAllowanceMode.Dots, replaceManyDashes: false }); // => "Re.move---Me"
-cleanKeySimpleCIWithDots(" Re.|:/move---Me "); // => "Re.move---Me"
+cleanKey(" Re.|~:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots, replaceManyDashes: false }); // => "Re.move---Me"
+cleanKeyWithDots(" Re.|~:/move---Me ", { caseSensitive: false, replaceManyDashes: false }); // => "Re.move---Me"
+cleanKeyCI(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Dots, replaceManyDashes: false }); // => "Re.move---Me"
+cleanKeySimpleCIWithDots(" Re.|~:/move---Me "); // => "Re.move---Me"
 ```
 
 ### `mode: specials` option and functions
 
-Similar to the `dots` mode, but allowing also pipes `|`, colons `:`, and slashes `/`. 
+Similar to the `dots` mode, but allowing also pipes `|`, colons `:`, and slashes `/`.
 You can change this behaviour by passing `mode: CharAllowanceMode.Specials` (or `mode: "specials") in the optional second argument, or by using the `cleanKeyCIWithSpecials()`, `cleanKeyWithSpecials()`, `cleanKeySimpleWithDot()` or `cleanKeySimpleCIWithSpecials()` functions.
 
 ```typescript
@@ -107,30 +107,30 @@ import {
   CharAllowanceMode,
 } from "@plandek-utils/ts-clean-key";
 
-cleanKey(" Re.|:/move---Me "); // => "emove-e"
+cleanKey(" Re.|~:/move---Me "); // => "emove-e"
 
-cleanKey(" Re.|:/move---Me ", { mode: CharAllowanceMode.Specials }); // => "e.|:/move-e"
-cleanKeyWithSpecials(" Re.|:/move---Me "); // => "e.|:/move-e"
+cleanKey(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Specials }); // => "e.|~:/move-e"
+cleanKeyWithSpecials(" Re.|~:/move---Me "); // => "e.|~:/move-e"
 
-cleanKey(" Re.|:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials }); // => "Re.|:/move-Me"
-cleanKeyWithSpecials(" Re.|:/move---Me ", { caseSensitive: false }); // => "Re.|:/move-Me"
-cleanKeyCI(" Re.|:/move---Me ", { mode: CharAllowanceMode.Specials }); // => "Re.|:/move-Me"
+cleanKey(" Re.|~:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials }); // => "Re.|~:/move-Me"
+cleanKeyWithSpecials(" Re.|~:/move---Me ", { caseSensitive: false }); // => "Re.|~:/move-Me"
+cleanKeyCI(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Specials }); // => "Re.|~:/move-Me"
 
-cleanKey(" Re.|:/move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Specials }); // => "e.|:/move---e"
-cleanKeyWithSpecials(" Re.|:/move---Me ", { replaceManyDashes: false }); // => "e.|:/move---e"
-cleanKeySimpleWithSpecials(" Re.|:/move---Me "); // => "e.|:/move---e"
+cleanKey(" Re.|~:/move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Specials }); // => "e.|~:/move---e"
+cleanKeyWithSpecials(" Re.|~:/move---Me ", { replaceManyDashes: false }); // => "e.|~:/move---e"
+cleanKeySimpleWithSpecials(" Re.|~:/move---Me "); // => "e.|~:/move---e"
 
-cleanKey(" Re.|:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials, replaceManyDashes: false }); // => "Re.|:/move---Me"
-cleanKeyWithSpecials(" Re.|:/move---Me ", { caseSensitive: false, replaceManyDashes: false }); // => "Re.|:/move---Me"
-cleanKeyCI(" Re.|:/move---Me ", { mode: CharAllowanceMode.Specials, replaceManyDashes: false }); // => "Re.|:/move---Me"
-cleanKeySimpleCIWithSpecials(" Re.|:/move---Me "); // => "Re.|:/move---Me"
+cleanKey(" Re.|~:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials, replaceManyDashes: false }); // => "Re.|~:/move---Me"
+cleanKeyWithSpecials(" Re.|~:/move---Me ", { caseSensitive: false, replaceManyDashes: false }); // => "Re.|~:/move---Me"
+cleanKeyCI(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Specials, replaceManyDashes: false }); // => "Re.|~:/move---Me"
+cleanKeySimpleCIWithSpecials(" Re.|~:/move---Me "); // => "Re.|~:/move---Me"
 ```
 
 ## Breaking changes warning
 
 ### v3.x
 
-Since v3.0 the `allowedDots` option was replaced with a `mode` option that can be `strict` (default), `dots`, or `specials. The typescript `CharAllowanceMode` enum covers the possible modes.
+Since v3.0 the `allowedDots` option was replaced with a `mode` option that can be `strict` (default), `dots`, or `specials`. The typescript `CharAllowanceMode` enum covers the possible modes.
 
 
 ### v2.x

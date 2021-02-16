@@ -49,14 +49,14 @@ export const INVALID_CHARS_CI_WITH_DOTS = /[^0-9A-Za-z\-_\.]/g;
  *
  * @see cleanKeySimpleWithSpecials()
  */
-export const INVALID_CHARS_WITH_SPECIALS = /[^0-9a-z\-_\.\/:\|]/g;
+export const INVALID_CHARS_WITH_SPECIALS = /[^0-9a-z\-_\.\/:~\|]/g;
 
 /**
  * regex to be used for detecting invalid chars for `cleanKeySimpleCIWithSpecials`
  *
  * @see cleanKeySimpleCIWithSpecials()
  */
-export const INVALID_CHARS_CI_WITH_SPECIALS = /[^0-9A-Za-z\-_\.\/:\|]/g;
+export const INVALID_CHARS_CI_WITH_SPECIALS = /[^0-9A-Za-z\-_\.\/~:\|]/g;
 
 /**
  * Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash `-` and underscore `_`)
@@ -95,7 +95,7 @@ export function cleanKeySimpleCIWithDots(s: string): string {
 }
 
 /**
- * Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash `-`, underscore `_`, dot `.`, pipes `|`, colons `:`, and slashes `/`)
+ * Removes bad chars for a string key (all except number, lowercase ascii7 letters, dash `-`, underscore `_`, dot `.`, pipes `|`, colons `:`, tildes `~`, and slashes `/`)
  *
  * @param s
  */
@@ -104,7 +104,7 @@ export function cleanKeySimpleWithSpecials(s: string): string {
 }
 
 /**
- * Removes bad chars for a string key (all except number, uppercase and lowercase ascii7 letters, dash `-`, underscore `_`, dot `.`, pipes `|`, colons `:`, and slashes `/`)
+ * Removes bad chars for a string key (all except number, uppercase and lowercase ascii7 letters, dash `-`, underscore `_`, dot `.`, pipes `|`, colons `:`, tildes `~`, and slashes `/`)
  *
  * @param s
  */
@@ -116,7 +116,7 @@ export function cleanKeySimpleCIWithSpecials(s: string): string {
  * signals which characters to allow, not taking into account case sensitivity:
  * - `strict` => `0-9`, `a-z`, `-`, and `_`
  * - `dots` => strict + `.`
- * - `specials` => strict + `.`, `|`, `/`, and `:`
+ * - `specials` => strict + `.`, `|`, `~`, `/`, and `:`
  */
 export enum CharAllowanceMode {
   Strict = "strict",
@@ -203,7 +203,7 @@ export function cleanKeyCIWithSpecials(s: string, opts: Omit<CleanKeyOptions, "c
  * If the mode is:
  *  - `strict`: it will allow just the standard set (`0-9`, `a-z`, `-`, and `_`)
  *  - `dots` => strict + `.`
- *  - `specials` => strict + `.`, `|`, `/`, and `:`
+ *  - `specials` => strict + `.`, `|`, `~`, `/`, and `:`
  * It also removes multiple dashes in a row and replaces them for a single dash unless option `replaceManyDashes: false` is given
  *
  * @param s

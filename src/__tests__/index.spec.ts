@@ -23,8 +23,8 @@ describe("default", () => {
     expect(cleanKey("  a - b")).toEqual("a-b");
   });
 
-  it('cleanKey("  s|/:ome S.tuff 🚀 \\n ñaaa --- a")', () => {
-    expect(cleanKey("  s|/:ome S.tuff 🚀 \n ñaaa --- a")).toEqual("sometuffaaa-a");
+  it('cleanKey("  s|/~:ome S.tuff 🚀 \\n ñaaa --- a")', () => {
+    expect(cleanKey("  s|/~:ome S.tuff 🚀 \n ñaaa --- a")).toEqual("sometuffaaa-a");
   });
 });
 
@@ -329,60 +329,62 @@ describe("test examples in README", () => {
   });
 
   it("dots and special chars", () => {
-    expect(cleanKey(" Re.|/:move---Me ")).toEqual("emove-e");
+    expect(cleanKey(" Re.|/~:move---Me ")).toEqual("emove-e");
 
-    expect(cleanKey(" Re.|/:move---Me ", { mode: CharAllowanceMode.Dots })).toEqual("e.move-e");
-    expect(cleanKeyWithDots(" Re.|/:move---Me ")).toEqual("e.move-e");
+    expect(cleanKey(" Re.|/~:move---Me ", { mode: CharAllowanceMode.Dots })).toEqual("e.move-e");
+    expect(cleanKeyWithDots(" Re.|/~:move---Me ")).toEqual("e.move-e");
 
-    expect(cleanKey(" Re.|/:move---Me ", { mode: CharAllowanceMode.Specials })).toEqual("e.|/:move-e");
-    expect(cleanKeyWithSpecials(" Re.|/:move---Me ")).toEqual("e.|/:move-e");
+    expect(cleanKey(" Re.|/~:move---Me ", { mode: CharAllowanceMode.Specials })).toEqual("e.|/~:move-e");
+    expect(cleanKeyWithSpecials(" Re.|/~:move---Me ")).toEqual("e.|/~:move-e");
 
-    expect(cleanKey(" Re.|/:move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots })).toEqual("Re.move-Me");
-    expect(cleanKeyWithDots(" Re.|/:move---Me ", { caseSensitive: false })).toEqual("Re.move-Me");
-    expect(cleanKeyCI(" Re.|/:move---Me ", { mode: CharAllowanceMode.Dots })).toEqual("Re.move-Me");
-
-    expect(cleanKey(" Re.|/:move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials })).toEqual(
-      "Re.|/:move-Me"
+    expect(cleanKey(" Re.|/~:move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots })).toEqual(
+      "Re.move-Me"
     );
-    expect(cleanKeyWithSpecials(" Re.|/:move---Me ", { caseSensitive: false })).toEqual("Re.|/:move-Me");
-    expect(cleanKeyCI(" Re.|/:move---Me ", { mode: CharAllowanceMode.Specials })).toEqual("Re.|/:move-Me");
+    expect(cleanKeyWithDots(" Re.|/~:move---Me ", { caseSensitive: false })).toEqual("Re.move-Me");
+    expect(cleanKeyCI(" Re.|/~:move---Me ", { mode: CharAllowanceMode.Dots })).toEqual("Re.move-Me");
 
-    expect(cleanKey(" Re.|/:move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Dots })).toEqual(
+    expect(cleanKey(" Re.|/~:move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials })).toEqual(
+      "Re.|/~:move-Me"
+    );
+    expect(cleanKeyWithSpecials(" Re.|/~:move---Me ", { caseSensitive: false })).toEqual("Re.|/~:move-Me");
+    expect(cleanKeyCI(" Re.|/~:move---Me ", { mode: CharAllowanceMode.Specials })).toEqual("Re.|/~:move-Me");
+
+    expect(cleanKey(" Re.|/~:move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Dots })).toEqual(
       "e.move---e"
     );
-    expect(cleanKeyWithDots(" Re.|/:move---Me ", { replaceManyDashes: false })).toEqual("e.move---e");
-    expect(cleanKeySimpleWithDots(" Re.|/:move---Me ")).toEqual("e.move---e");
+    expect(cleanKeyWithDots(" Re.|/~:move---Me ", { replaceManyDashes: false })).toEqual("e.move---e");
+    expect(cleanKeySimpleWithDots(" Re.|/~:move---Me ")).toEqual("e.move---e");
 
-    expect(cleanKey(" Re.|/:move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Specials })).toEqual(
-      "e.|/:move---e"
+    expect(cleanKey(" Re.|/~:move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Specials })).toEqual(
+      "e.|/~:move---e"
     );
-    expect(cleanKeyWithSpecials(" Re.|/:move---Me ", { replaceManyDashes: false })).toEqual("e.|/:move---e");
-    expect(cleanKeySimpleWithSpecials(" Re.|/:move---Me ")).toEqual("e.|/:move---e");
+    expect(cleanKeyWithSpecials(" Re.|/~:move---Me ", { replaceManyDashes: false })).toEqual("e.|/~:move---e");
+    expect(cleanKeySimpleWithSpecials(" Re.|/~:move---Me ")).toEqual("e.|/~:move---e");
 
     expect(
-      cleanKey(" Re.|/:move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots, replaceManyDashes: false })
+      cleanKey(" Re.|/~:move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots, replaceManyDashes: false })
     ).toEqual("Re.move---Me");
-    expect(cleanKeyWithDots(" Re.|/:move---Me ", { caseSensitive: false, replaceManyDashes: false })).toEqual(
+    expect(cleanKeyWithDots(" Re.|/~:move---Me ", { caseSensitive: false, replaceManyDashes: false })).toEqual(
       "Re.move---Me"
     );
-    expect(cleanKeyCI(" Re.|/:move---Me ", { mode: CharAllowanceMode.Dots, replaceManyDashes: false })).toEqual(
+    expect(cleanKeyCI(" Re.|/~:move---Me ", { mode: CharAllowanceMode.Dots, replaceManyDashes: false })).toEqual(
       "Re.move---Me"
     );
-    expect(cleanKeySimpleCIWithDots(" Re.|/:move---Me ")).toEqual("Re.move---Me");
+    expect(cleanKeySimpleCIWithDots(" Re.|/~:move---Me ")).toEqual("Re.move---Me");
 
     expect(
-      cleanKey(" Re.|/:move---Me ", {
+      cleanKey(" Re.|/~:move---Me ", {
         caseSensitive: false,
         mode: CharAllowanceMode.Specials,
         replaceManyDashes: false,
       })
-    ).toEqual("Re.|/:move---Me");
-    expect(cleanKeyWithSpecials(" Re.|/:move---Me ", { caseSensitive: false, replaceManyDashes: false })).toEqual(
-      "Re.|/:move---Me"
+    ).toEqual("Re.|/~:move---Me");
+    expect(cleanKeyWithSpecials(" Re.|/~:move---Me ", { caseSensitive: false, replaceManyDashes: false })).toEqual(
+      "Re.|/~:move---Me"
     );
-    expect(cleanKeyCI(" Re.|/:move---Me ", { mode: CharAllowanceMode.Specials, replaceManyDashes: false })).toEqual(
-      "Re.|/:move---Me"
+    expect(cleanKeyCI(" Re.|/~:move---Me ", { mode: CharAllowanceMode.Specials, replaceManyDashes: false })).toEqual(
+      "Re.|/~:move---Me"
     );
-    expect(cleanKeySimpleCIWithSpecials(" Re.|/:move---Me ")).toEqual("Re.|/:move---Me");
+    expect(cleanKeySimpleCIWithSpecials(" Re.|/~:move---Me ")).toEqual("Re.|/~:move---Me");
   });
 });
