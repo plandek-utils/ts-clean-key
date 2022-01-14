@@ -237,3 +237,24 @@ function performClean(s: string, mode: CharAllowanceModeEnumValues, caseSensitiv
 
   return caseSensitive ? cleanKeySimple(s) : cleanKeySimpleCI(s);
 }
+
+/**
+ * For each character in the string that is not one of the safe characters [a-zA-Z0-9],
+ * it will replace them with `-HEX_UNICODE_CODE_PADDED_6` (e.g. ' ' => '-000020')
+ *
+ * @param original
+ */
+export function processedSafeKey(original: string): string {
+  return original.split("").map(processedSafeChar).join("");
+}
+
+const PROCESSED_SAFE_CHARS = /[A-Za-z0-9]/;
+
+function processedSafeChar(char: string): string {
+  if (PROCESSED_SAFE_CHARS.test(char)) {
+    return char;
+  }
+
+  const code = char.charCodeAt(0);
+  return `-${code.toString(16).toUpperCase().padStart(6, "0")}`;
+}

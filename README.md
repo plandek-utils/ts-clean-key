@@ -61,7 +61,7 @@ cleanKeySimpleCI(" Remove---Me "); // => "Remove---Me"
 
 ### `mode: dots` option and functions
 
-By default, `cleanKey` will not allow dots `.`. You can change this behaviour by passing `mode: CharAllowanceMode.Dots` (or `mode: "dots") in the optional second argument, or by using the `cleanKeyCIWithDots()`, `cleanKeyWithDots()`, `cleanKeySimpleWithDot()` or `cleanKeySimpleCIWithDots()` functions.
+By default, `cleanKey` will not allow dots `.`. You can change this behaviour by passing `mode: CharAllowanceMode.Dots` (or `mode: "dots") in the optional second argument, or by using the `cleanKeyCIWithDots()`, `cleanKeyWithDots()`, `cleanKeySimpleWithDot()`or`cleanKeySimpleCIWithDots()` functions.
 
 ```typescript
 import {
@@ -95,7 +95,7 @@ cleanKeySimpleCIWithDots(" Re.|~:/move---Me "); // => "Re.move---Me"
 ### `mode: specials` option and functions
 
 Similar to the `dots` mode, but allowing also pipes `|`, colons `:`, and slashes `/`.
-You can change this behaviour by passing `mode: CharAllowanceMode.Specials` (or `mode: "specials") in the optional second argument, or by using the `cleanKeyCIWithSpecials()`, `cleanKeyWithSpecials()`, `cleanKeySimpleWithDot()` or `cleanKeySimpleCIWithSpecials()` functions.
+You can change this behaviour by passing `mode: CharAllowanceMode.Specials` (or `mode: "specials") in the optional second argument, or by using the `cleanKeyCIWithSpecials()`, `cleanKeyWithSpecials()`, `cleanKeySimpleWithDot()`or`cleanKeySimpleCIWithSpecials()` functions.
 
 ```typescript
 import {
@@ -126,12 +126,20 @@ cleanKeyCI(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Specials, replaceMany
 cleanKeySimpleCIWithSpecials(" Re.|~:/move---Me "); // => "Re.|~:/move---Me"
 ```
 
+## `processedSafeKey`
+
+This function returns a special way of cleaning keys: For each character in the string that is not one of the safe characters [a-zA-Z0-9], it will replace them with `-HEX_UNICODE_CODE_PADDED_6` (e.g. ' ' => '-000020').
+
+```typescript
+processedSafeKey("casa"); // => "casa"
+processedSafeKey("casa de/paco"); // => "casa-000020de-00002Fpaco");
+```
+
 ## Breaking changes warning
 
 ### v3.x
 
 Since v3.0 the `allowedDots` option was replaced with a `mode` option that can be `strict` (default), `dots`, or `specials`. The typescript `CharAllowanceMode` enum covers the possible modes.
-
 
 ### v2.x
 

@@ -12,6 +12,7 @@ import {
   cleanKeyWithSpecials,
   cleanKeyCIWithSpecials,
   CharAllowanceMode,
+  processedSafeKey,
 } from "..";
 
 describe("default", () => {
@@ -386,5 +387,19 @@ describe("test examples in README", () => {
       "Re.|/~:move---Me"
     );
     expect(cleanKeySimpleCIWithSpecials(" Re.|/~:move---Me ")).toEqual("Re.|/~:move---Me");
+  });
+});
+
+describe("processedSafeKey", () => {
+  it("works fine with safe chars", () => {
+    expect(processedSafeKey("casa")).toEqual("casa");
+  });
+
+  it("replaces space with -000020", () => {
+    expect(processedSafeKey("casa de paco")).toEqual("casa-000020de-000020paco");
+  });
+
+  it("replaces space with -000020", () => {
+    expect(processedSafeKey("casa de/paco")).toEqual("casa-000020de-00002Fpaco");
   });
 });
