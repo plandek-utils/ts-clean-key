@@ -1,354 +1,125 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@plandek-utils/ts-clean-key</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<link rel="stylesheet" href="assets/css/main.plus.css">
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">@plandek-utils/ts-clean-key</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>@plandek-utils/ts-clean-key</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#plandek-utilsts-clean-key" id="plandek-utilsts-clean-key" style="color: inherit; text-decoration: none;">
-					<h1><code>@plandek-utils/ts-clean-key</code></h1>
-				</a>
-				<p><a href="https://badge.fury.io/js/%40plandek-utils%2Fts-clean-key"><img src="https://badge.fury.io/js/%40plandek-utils%2Fts-clean-key.svg" alt="npm version"></a>
-					<a href="https://travis-ci.org/plandek-utils/ts-clean-key"><img src="https://travis-ci.org/plandek-utils/ts-clean-key.svg?branch=master" alt="Build Status"></a>
-					<a href="https://codeclimate.com/github/plandek-utils/ts-clean-key/maintainability"><img src="https://api.codeclimate.com/v1/badges/0a2ee0323272ad4910b5/maintainability" alt="Maintainability"></a>
-				<a href="https://codeclimate.com/github/plandek-utils/ts-clean-key/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0a2ee0323272ad4910b5/test_coverage" alt="Test Coverage"></a></p>
-				<p><a href="https://plandek-utils.github.io/ts-clean-key">TypeDoc generated docs in here</a></p>
-				<p><a href="https://github.com/plandek-utils/ts-clean-key">Github repo here</a></p>
-				<p>Removes bad chars for a string key (all except number <code>0-9</code>, lowercase ascii7 letters <code>a-z</code>, dash <code>-</code> and underscore <code>_</code>).</p>
-				<p>It also removes multiple dashes in a row and replaces them for a single dash, which can be <a href="#replacemanydashes-option-and-functions">optionally disabled</a>.</p>
-				<p>It can optionally also allow uppercase ascii7 letters <code>A-Z</code> <a href="#casesensitive-option-and-functions">with a toggle</a>.</p>
-				<p>It can optionally also allow extra characters, like <a href="#mode-dots-option-and-functions">dots</a> or other <a href="#mode-specials-option-and-functions">special characters</a>, by using a <code>mode</code> option.</p>
-				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-					<h2>Installation</h2>
-				</a>
-				<p><code>yarn add @plandek-utils/ts-clean-key</code> or <code>npm install @plandek-utils/ts-clean-key</code>.</p>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h2>Usage</h2>
-				</a>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">cleanKey</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@plandek-utils/ts-clean-key</title><meta name="description" content="Documentation for @plandek-utils/ts-clean-key"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@plandek-utils/ts-clean-key</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@plandek-utils/ts-clean-key</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#plandek-utilsts-clean-key" id="plandek-utilsts-clean-key" style="color: inherit; text-decoration: none;">
+  <h1><code>@plandek-utils/ts-clean-key</code></h1>
+</a>
+<p><a href="https://badge.fury.io/js/%40plandek-utils%2Fts-clean-key"><img src="https://badge.fury.io/js/%40plandek-utils%2Fts-clean-key.svg" alt="npm version"></a>
+<a href="https://travis-ci.org/plandek-utils/ts-clean-key"><img src="https://travis-ci.org/plandek-utils/ts-clean-key.svg?branch=master" alt="Build Status"></a>
+<a href="https://codeclimate.com/github/plandek-utils/ts-clean-key/maintainability"><img src="https://api.codeclimate.com/v1/badges/0a2ee0323272ad4910b5/maintainability" alt="Maintainability"></a>
+<a href="https://codeclimate.com/github/plandek-utils/ts-clean-key/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0a2ee0323272ad4910b5/test_coverage" alt="Test Coverage"></a></p>
+<p><a href="https://plandek-utils.github.io/ts-clean-key">TypeDoc generated docs in here</a></p>
+<p><a href="https://github.com/plandek-utils/ts-clean-key">Github repo here</a></p>
+<p>Removes bad chars for a string key (all except number <code>0-9</code>, lowercase ascii7 letters <code>a-z</code>, dash <code>-</code> and underscore <code>_</code>).</p>
+<p>It also removes multiple dashes in a row and replaces them for a single dash, which can be <a href="#replacemanydashes-option-and-functions">optionally disabled</a>.</p>
+<p>It can optionally also allow uppercase ascii7 letters <code>A-Z</code> <a href="#casesensitive-option-and-functions">with a toggle</a>.</p>
+<p>It can optionally also allow extra characters, like <a href="#mode-dots-option-and-functions">dots</a> or other <a href="#mode-specials-option-and-functions">special characters</a>, by using a <code>mode</code> option.</p>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;&quot;</span>
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;  a - b&quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;a-b&quot;</span>
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;  some Stuff 🚀 </span><span style="color: #EE0000">\n</span><span style="color: #A31515"> ñaaa --- a&quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;sometuffaaa-a&quot;</span>
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<p><code>yarn add @plandek-utils/ts-clean-key</code> or <code>npm install @plandek-utils/ts-clean-key</code>.</p>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">cleanKey</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;@plandek-utils/ts-clean-key&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot;&quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;&quot;</span><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot;  a - b&quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;a-b&quot;</span><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot;  some Stuff 🚀 </span><span class="hl-6">\n</span><span class="hl-3"> ñaaa --- a&quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;sometuffaaa-a&quot;</span>
 </code></pre>
-				<a href="#replacemanydashes-option-and-functions" id="replacemanydashes-option-and-functions" style="color: inherit; text-decoration: none;">
-					<h3><code>replaceManyDashes</code> option and functions</h3>
-				</a>
-				<p>By default, <code>cleanKey</code> will replace many resulting dashes for a single dash. You can disable this behaviour by passing <code>replaceManyDashes: false</code> in the optional options argument, or by using the <code>cleanKeySimple()</code> function.</p>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">cleanKey</span><span style="color: #000000">, </span><span style="color: #001080">cleanKeySimple</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; something-is---here &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;something-is-here&quot;</span>
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; something-is---here &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;something-is---here&quot;</span>
-<span style="color: #795E26">cleanKeySimple</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; something-is---here &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;something-is---here&quot;</span>
+<a href="#replacemanydashes-option-and-functions" id="replacemanydashes-option-and-functions" style="color: inherit; text-decoration: none;">
+  <h3><code>replaceManyDashes</code> option and functions</h3>
+</a>
+<p>By default, <code>cleanKey</code> will replace many resulting dashes for a single dash. You can disable this behaviour by passing <code>replaceManyDashes: false</code> in the optional options argument, or by using the <code>cleanKeySimple()</code> function.</p>
+<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">cleanKey</span><span class="hl-1">, </span><span class="hl-2">cleanKeySimple</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;@plandek-utils/ts-clean-key&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; something-is---here &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;something-is-here&quot;</span><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; something-is---here &quot;</span><span class="hl-1">, { </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;something-is---here&quot;</span><br/><span class="hl-4">cleanKeySimple</span><span class="hl-1">(</span><span class="hl-3">&quot; something-is---here &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;something-is---here&quot;</span>
 </code></pre>
-				<a href="#casesensitive-option-and-functions" id="casesensitive-option-and-functions" style="color: inherit; text-decoration: none;">
-					<h3><code>caseSensitive</code> option and functions</h3>
-				</a>
-				<p>By default, <code>cleanKey</code> will not allow uppercase ascii7 letters <code>A-Z</code>. You can change this behaviour by passing <code>caseSensitive: false</code> in the optional second argument, or by using the <code>cleanKeyCI()</code> or <code>cleanKeySimpleCI()</code> functions</p>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">cleanKey</span><span style="color: #000000">, </span><span style="color: #001080">cleanKeyCI</span><span style="color: #000000">, </span><span style="color: #001080">cleanKeySimpleCI</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;emove-e&quot;</span>
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Remove-Me&quot;</span>
-<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Remove-Me&quot;</span>
-
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;emove---e&quot;</span>
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Remove---Me&quot;</span>
-<span style="color: #795E26">cleanKeySimpleCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Remove---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Remove---Me&quot;</span>
+<a href="#casesensitive-option-and-functions" id="casesensitive-option-and-functions" style="color: inherit; text-decoration: none;">
+  <h3><code>caseSensitive</code> option and functions</h3>
+</a>
+<p>By default, <code>cleanKey</code> will not allow uppercase ascii7 letters <code>A-Z</code>. You can change this behaviour by passing <code>caseSensitive: false</code> in the optional second argument, or by using the <code>cleanKeyCI()</code> or <code>cleanKeySimpleCI()</code> functions</p>
+<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">cleanKey</span><span class="hl-1">, </span><span class="hl-2">cleanKeyCI</span><span class="hl-1">, </span><span class="hl-2">cleanKeySimpleCI</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;@plandek-utils/ts-clean-key&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Remove---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;emove-e&quot;</span><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Remove---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Remove-Me&quot;</span><br/><span class="hl-4">cleanKeyCI</span><span class="hl-1">(</span><span class="hl-3">&quot; Remove---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;Remove-Me&quot;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Remove---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;emove---e&quot;</span><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Remove---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">, </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Remove---Me&quot;</span><br/><span class="hl-4">cleanKeySimpleCI</span><span class="hl-1">(</span><span class="hl-3">&quot; Remove---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;Remove---Me&quot;</span>
 </code></pre>
-				<a href="#mode-dots-option-and-functions" id="mode-dots-option-and-functions" style="color: inherit; text-decoration: none;">
-					<h3><code>mode: dots</code> option and functions</h3>
-				</a>
-				<p>By default, <code>cleanKey</code> will not allow dots <code>.</code>. You can change this behaviour by passing <code>mode: CharAllowanceMode.Dots</code> (or <code>mode: &quot;dots&quot;) in the optional second argument, or by using the </code>cleanKeyCIWithDots()<code>, </code>cleanKeyWithDots()<code>, </code>cleanKeySimpleWithDot()<code>or</code>cleanKeySimpleCIWithDots()` functions.</p>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKey</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKeyCI</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleWithDots</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleCIWithDots</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKeyWithDots</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">,</span>
-<span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;emove-e&quot;</span>
-
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move-e&quot;</span>
-<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.move-e&quot;</span>
-
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
-<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
-<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move-Me&quot;</span>
-
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
-<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
-<span style="color: #795E26">cleanKeySimpleWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.move---e&quot;</span>
-
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
-<span style="color: #795E26">cleanKeyWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
-<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Dots</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
-<span style="color: #795E26">cleanKeySimpleCIWithDots</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Re.move---Me&quot;</span>
+<a href="#mode-dots-option-and-functions" id="mode-dots-option-and-functions" style="color: inherit; text-decoration: none;">
+  <h3><code>mode: dots</code> option and functions</h3>
+</a>
+<p>By default, <code>cleanKey</code> will not allow dots <code>.</code>. You can change this behaviour by passing <code>mode: CharAllowanceMode.Dots</code> (or <code>mode: &quot;dots&quot;) in the optional second argument, or by using the </code>cleanKeyCIWithDots()<code>, </code>cleanKeyWithDots()<code>, </code>cleanKeySimpleWithDot()<code>or</code>cleanKeySimpleCIWithDots()` functions.</p>
+<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKey</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKeyCI</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKeySimpleWithDots</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKeySimpleCIWithDots</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKeyWithDots</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">,</span><br/><span class="hl-1">} </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;@plandek-utils/ts-clean-key&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;emove-e&quot;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Dots</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;e.move-e&quot;</span><br/><span class="hl-4">cleanKeyWithDots</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;e.move-e&quot;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">, </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Dots</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.move-Me&quot;</span><br/><span class="hl-4">cleanKeyWithDots</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.move-Me&quot;</span><br/><span class="hl-4">cleanKeyCI</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Dots</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.move-Me&quot;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">, </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Dots</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;e.move---e&quot;</span><br/><span class="hl-4">cleanKeyWithDots</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;e.move---e&quot;</span><br/><span class="hl-4">cleanKeySimpleWithDots</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;e.move---e&quot;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">, </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Dots</span><span class="hl-1">, </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.move---Me&quot;</span><br/><span class="hl-4">cleanKeyWithDots</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">, </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.move---Me&quot;</span><br/><span class="hl-4">cleanKeyCI</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Dots</span><span class="hl-1">, </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.move---Me&quot;</span><br/><span class="hl-4">cleanKeySimpleCIWithDots</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;Re.move---Me&quot;</span>
 </code></pre>
-				<a href="#mode-specials-option-and-functions" id="mode-specials-option-and-functions" style="color: inherit; text-decoration: none;">
-					<h3><code>mode: specials</code> option and functions</h3>
-				</a>
-				<p>Similar to the <code>dots</code> mode, but allowing also pipes <code>|</code>, colons <code>:</code>, and slashes <code>/</code>.
-				You can change this behaviour by passing <code>mode: CharAllowanceMode.Specials</code> (or <code>mode: &quot;specials&quot;) in the optional second argument, or by using the </code>cleanKeyCIWithSpecials()<code>, </code>cleanKeyWithSpecials()<code>, </code>cleanKeySimpleWithDot()<code>or</code>cleanKeySimpleCIWithSpecials()` functions.</p>
-				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKey</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKeyCI</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleWithSpecials</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKeySimpleCIWithSpecials</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">cleanKeyWithSpecials</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">,</span>
-<span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;emove-e&quot;</span>
-
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.|~:/move-e&quot;</span>
-<span style="color: #795E26">cleanKeyWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.|~:/move-e&quot;</span>
-
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|~:/move-Me&quot;</span>
-<span style="color: #795E26">cleanKeyWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|~:/move-Me&quot;</span>
-<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|~:/move-Me&quot;</span>
-
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.|~:/move---e&quot;</span>
-<span style="color: #795E26">cleanKeyWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;e.|~:/move---e&quot;</span>
-<span style="color: #795E26">cleanKeySimpleWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;e.|~:/move---e&quot;</span>
-
-<span style="color: #795E26">cleanKey</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|~:/move---Me&quot;</span>
-<span style="color: #795E26">cleanKeyWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">caseSensitive:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|~:/move---Me&quot;</span>
-<span style="color: #795E26">cleanKeyCI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">, { </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">CharAllowanceMode</span><span style="color: #000000">.</span><span style="color: #001080">Specials</span><span style="color: #000000">, </span><span style="color: #001080">replaceManyDashes:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> }); </span><span style="color: #008000">// =&gt; &quot;Re.|~:/move---Me&quot;</span>
-<span style="color: #795E26">cleanKeySimpleCIWithSpecials</span><span style="color: #000000">(</span><span style="color: #A31515">&quot; Re.|~:/move---Me &quot;</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; &quot;Re.|~:/move---Me&quot;</span>
+<a href="#mode-specials-option-and-functions" id="mode-specials-option-and-functions" style="color: inherit; text-decoration: none;">
+  <h3><code>mode: specials</code> option and functions</h3>
+</a>
+<p>Similar to the <code>dots</code> mode, but allowing also pipes <code>|</code>, colons <code>:</code>, and slashes <code>/</code>.
+You can change this behaviour by passing <code>mode: CharAllowanceMode.Specials</code> (or <code>mode: &quot;specials&quot;) in the optional second argument, or by using the </code>cleanKeyCIWithSpecials()<code>, </code>cleanKeyWithSpecials()<code>, </code>cleanKeySimpleWithDot()<code>or</code>cleanKeySimpleCIWithSpecials()` functions.</p>
+<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKey</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKeyCI</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKeySimpleWithSpecials</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKeySimpleCIWithSpecials</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">cleanKeyWithSpecials</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">,</span><br/><span class="hl-1">} </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;@plandek-utils/ts-clean-key&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;emove-e&quot;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Specials</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;e.|~:/move-e&quot;</span><br/><span class="hl-4">cleanKeyWithSpecials</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;e.|~:/move-e&quot;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">, </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Specials</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.|~:/move-Me&quot;</span><br/><span class="hl-4">cleanKeyWithSpecials</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.|~:/move-Me&quot;</span><br/><span class="hl-4">cleanKeyCI</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Specials</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.|~:/move-Me&quot;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">, </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Specials</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;e.|~:/move---e&quot;</span><br/><span class="hl-4">cleanKeyWithSpecials</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;e.|~:/move---e&quot;</span><br/><span class="hl-4">cleanKeySimpleWithSpecials</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;e.|~:/move---e&quot;</span><br/><br/><span class="hl-4">cleanKey</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">, </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Specials</span><span class="hl-1">, </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.|~:/move---Me&quot;</span><br/><span class="hl-4">cleanKeyWithSpecials</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">caseSensitive:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">, </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.|~:/move---Me&quot;</span><br/><span class="hl-4">cleanKeyCI</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">, { </span><span class="hl-2">mode:</span><span class="hl-1"> </span><span class="hl-2">CharAllowanceMode</span><span class="hl-1">.</span><span class="hl-2">Specials</span><span class="hl-1">, </span><span class="hl-2">replaceManyDashes:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1"> }); </span><span class="hl-5">// =&gt; &quot;Re.|~:/move---Me&quot;</span><br/><span class="hl-4">cleanKeySimpleCIWithSpecials</span><span class="hl-1">(</span><span class="hl-3">&quot; Re.|~:/move---Me &quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;Re.|~:/move---Me&quot;</span>
 </code></pre>
-				<a href="#breaking-changes-warning" id="breaking-changes-warning" style="color: inherit; text-decoration: none;">
-					<h2>Breaking changes warning</h2>
-				</a>
-				<a href="#v3x" id="v3x" style="color: inherit; text-decoration: none;">
-					<h3>v3.x</h3>
-				</a>
-				<p>Since v3.0 the <code>allowedDots</code> option was replaced with a <code>mode</code> option that can be <code>strict</code> (default), <code>dots</code>, or <code>specials</code>. The typescript <code>CharAllowanceMode</code> enum covers the possible modes.</p>
-				<a href="#v2x" id="v2x" style="color: inherit; text-decoration: none;">
-					<h3>v2.x</h3>
-				</a>
-				<p>Since v2.0 the <code>cleanKey</code> is not the default export. Instead both <code>cleanKey</code> and <code>cleanKeySimple</code> are named exports.</p>
-				<pre><code class="language-typescript"><span style="color: #008000">// v1.x</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">cleanKey</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #008000">// v2.x</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">cleanKey</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@plandek-utils/ts-clean-key&quot;</span><span style="color: #000000">;</span>
+<a href="#processedsafekey" id="processedsafekey" style="color: inherit; text-decoration: none;">
+  <h2><code>processedSafeKey</code></h2>
+</a>
+<p>This function returns a special way of cleaning keys: For each character in the string that is not one of the safe characters [a-zA-Z0-9], it will replace them with <code>-HEX_UNICODE_CODE_PADDED_6</code> (e.g. &#39; &#39; =&gt; &#39;-000020&#39;).</p>
+<pre><code class="language-typescript"><span class="hl-4">processedSafeKey</span><span class="hl-1">(</span><span class="hl-3">&quot;casa&quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;casa&quot;</span><br/><span class="hl-4">processedSafeKey</span><span class="hl-1">(</span><span class="hl-3">&quot;casa de/paco&quot;</span><span class="hl-1">); </span><span class="hl-5">// =&gt; &quot;casa-000020de-00002Fpaco&quot;);</span>
 </code></pre>
-				<a href="#development-commits-versioning-and-publishing" id="development-commits-versioning-and-publishing" style="color: inherit; text-decoration: none;">
-					<h2>Development, Commits, versioning and publishing</h2>
-				</a>
-				<details><summary>See documentation for development</summary>
-					<p>
-						<p>See <a href="https://github.com/bitjson/typescript-starter#bump-version-update-changelog-commit--tag-release">The Typescript-Starter docs</a>.</p>
-						<a href="#commits-and-changelog" id="commits-and-changelog" style="color: inherit; text-decoration: none;">
-							<h3>Commits and CHANGELOG</h3>
-						</a>
-						<p>For commits, you should use <a href="https://github.com/commitizen/cz-cli"><code>commitizen</code></a></p>
-						<pre><code class="language-sh"><span style="color: #000000">yarn global add commitizen</span>
 
-<span style="color: #008000">#commit your changes:</span>
-<span style="color: #000000">git cz</span>
+<a href="#breaking-changes-warning" id="breaking-changes-warning" style="color: inherit; text-decoration: none;">
+  <h2>Breaking changes warning</h2>
+</a>
+
+<a href="#v3x" id="v3x" style="color: inherit; text-decoration: none;">
+  <h3>v3.x</h3>
+</a>
+<p>Since v3.0 the <code>allowedDots</code> option was replaced with a <code>mode</code> option that can be <code>strict</code> (default), <code>dots</code>, or <code>specials</code>. The typescript <code>CharAllowanceMode</code> enum covers the possible modes.</p>
+
+<a href="#v2x" id="v2x" style="color: inherit; text-decoration: none;">
+  <h3>v2.x</h3>
+</a>
+<p>Since v2.0 the <code>cleanKey</code> is not the default export. Instead both <code>cleanKey</code> and <code>cleanKeySimple</code> are named exports.</p>
+<pre><code class="language-typescript"><span class="hl-5">// v1.x</span><br/><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">cleanKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;@plandek-utils/ts-clean-key&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">// v2.x</span><br/><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">cleanKey</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;@plandek-utils/ts-clean-key&quot;</span><span class="hl-1">;</span>
 </code></pre>
-						<p>As typescript-starter docs state:</p>
-						<p>This project is tooled for <a href="https://github.com/conventional-changelog/conventional-changelog">conventional changelog</a> to make managing releases easier. See the <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> documentation for more information on the workflow, or <a href="CHANGELOG.md"><code>CHANGELOG.md</code></a> for an example.</p>
-						<pre><code class="language-sh"><span style="color: #008000"># bump package.json version, update CHANGELOG.md, git tag the release</span>
-<span style="color: #000000">yarn run version</span>
+
+<a href="#development-commits-versioning-and-publishing" id="development-commits-versioning-and-publishing" style="color: inherit; text-decoration: none;">
+  <h2>Development, Commits, versioning and publishing</h2>
+</a>
+<details><summary>See documentation for development</summary>
+<p>
+
+<p>See <a href="https://github.com/bitjson/typescript-starter#bump-version-update-changelog-commit--tag-release">The Typescript-Starter docs</a>.</p>
+
+<a href="#commits-and-changelog" id="commits-and-changelog" style="color: inherit; text-decoration: none;">
+  <h3>Commits and CHANGELOG</h3>
+</a>
+<p>For commits, you should use <a href="https://github.com/commitizen/cz-cli"><code>commitizen</code></a></p>
+<pre><code class="language-sh"><span class="hl-1">yarn global add commitizen</span><br/><br/><span class="hl-5">#commit your changes:</span><br/><span class="hl-1">git cz</span>
 </code></pre>
-						<p>You may find a tool like <a href="https://github.com/bitjson/wip"><strong><code>wip</code></strong></a> helpful for managing work in progress before you&#39;re ready to create a meaningful commit.</p>
-						<a href="#creating-the-first-version" id="creating-the-first-version" style="color: inherit; text-decoration: none;">
-							<h3>Creating the first version</h3>
-						</a>
-						<p>Once you are ready to create the first version, run the following (note that <code>reset</code> is destructive and will remove all files not in the git repo from the directory).</p>
-						<pre><code class="language-sh"><span style="color: #008000"># Reset the repo to the latest commit and build everything</span>
-<span style="color: #000000">yarn run reset &amp;&amp; yarn run </span><span style="color: #795E26">test</span><span style="color: #000000"> &amp;&amp; yarn run doc:html</span>
-
-<span style="color: #008000"># Then version it with standard-version options. e.g.:</span>
-<span style="color: #008000"># don&#039;t bump package.json version</span>
-<span style="color: #000000">yarn run version -- --first-release</span>
-
-<span style="color: #008000"># Other popular options include:</span>
-
-<span style="color: #008000"># PGP sign it:</span>
-<span style="color: #008000"># $ yarn run version -- --sign</span>
-
-<span style="color: #008000"># alpha release:</span>
-<span style="color: #008000"># $ yarn run version -- --prerelease alpha</span>
+<p>As typescript-starter docs state:</p>
+<p>This project is tooled for <a href="https://github.com/conventional-changelog/conventional-changelog">conventional changelog</a> to make managing releases easier. See the <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> documentation for more information on the workflow, or <a href="CHANGELOG.md"><code>CHANGELOG.md</code></a> for an example.</p>
+<pre><code class="language-sh"><span class="hl-5"># bump package.json version, update CHANGELOG.md, git tag the release</span><br/><span class="hl-1">yarn run version</span>
 </code></pre>
-						<p>And after that, remember to <a href="#publish-the-docs">publish the docs</a>.</p>
-						<p>And finally push the new tags to github and publish the package to npm.</p>
-						<pre><code class="language-sh"><span style="color: #008000"># Push to git</span>
-<span style="color: #000000">git push --follow-tags origin master</span>
+<p>You may find a tool like <a href="https://github.com/bitjson/wip"><strong><code>wip</code></strong></a> helpful for managing work in progress before you&#39;re ready to create a meaningful commit.</p>
 
-<span style="color: #008000"># Publish to NPM (allowing public access, required if the package name is namespaced like `@somewhere/some-lib`)</span>
-<span style="color: #000000">yarn publish --access public</span>
+<a href="#creating-the-first-version" id="creating-the-first-version" style="color: inherit; text-decoration: none;">
+  <h3>Creating the first version</h3>
+</a>
+<p>Once you are ready to create the first version, run the following (note that <code>reset</code> is destructive and will remove all files not in the git repo from the directory).</p>
+<pre><code class="language-sh"><span class="hl-5"># Reset the repo to the latest commit and build everything</span><br/><span class="hl-1">yarn run reset &amp;&amp; yarn run </span><span class="hl-4">test</span><span class="hl-1"> &amp;&amp; yarn run doc:html</span><br/><br/><span class="hl-5"># Then version it with standard-version options. e.g.:</span><br/><span class="hl-5"># don&#39;t bump package.json version</span><br/><span class="hl-1">yarn run version -- --first-release</span><br/><br/><span class="hl-5"># Other popular options include:</span><br/><br/><span class="hl-5"># PGP sign it:</span><br/><span class="hl-5"># $ yarn run version -- --sign</span><br/><br/><span class="hl-5"># alpha release:</span><br/><span class="hl-5"># $ yarn run version -- --prerelease alpha</span>
 </code></pre>
-						<a href="#publish-the-docs" id="publish-the-docs" style="color: inherit; text-decoration: none;">
-							<h3>Publish the Docs</h3>
-						</a>
-						<pre><code class="language-sh"><span style="color: #000000">yarn run doc:html &amp;&amp; yarn run doc:publish</span>
+<p>And after that, remember to <a href="#publish-the-docs">publish the docs</a>.</p>
+<p>And finally push the new tags to github and publish the package to npm.</p>
+<pre><code class="language-sh"><span class="hl-5"># Push to git</span><br/><span class="hl-1">git push --follow-tags origin master</span><br/><br/><span class="hl-5"># Publish to NPM (allowing public access, required if the package name is namespaced like `@somewhere/some-lib`)</span><br/><span class="hl-1">yarn publish --access public</span>
 </code></pre>
-						<p>This will generate the docs and publish them in github pages.</p>
-						<a href="#generate-a-version" id="generate-a-version" style="color: inherit; text-decoration: none;">
-							<h3>Generate a version</h3>
-						</a>
-						<p>There is a single yarn command for preparing a new release. See <a href="https://github.com/bitjson/typescript-starter#one-step-publish-preparation-script">One-step publish preparation script in TypeScript-Starter</a></p>
-						<pre><code class="language-sh"><span style="color: #008000"># Prepare a standard release</span>
-<span style="color: #000000">yarn prepare-release</span>
 
-<span style="color: #008000"># Push to git</span>
-<span style="color: #000000">git push --follow-tags origin master</span>
-
-<span style="color: #008000"># Publish to NPM (allowing public access, required if the package name is namespaced like `@somewhere/some-lib`)</span>
-<span style="color: #000000">yarn publish --access public</span>
+<a href="#publish-the-docs" id="publish-the-docs" style="color: inherit; text-decoration: none;">
+  <h3>Publish the Docs</h3>
+</a>
+<pre><code class="language-sh"><span class="hl-1">yarn run doc:html &amp;&amp; yarn run doc:publish</span>
 </code></pre>
-					</p>
-				</details>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="enums/charallowancemode.html" class="tsd-kind-icon">Char<wbr>Allowance<wbr>Mode</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#charallowancemodeenumvalues" class="tsd-kind-icon">Char<wbr>Allowance<wbr>Mode<wbr>Enum<wbr>Values</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#cleankeyoptions" class="tsd-kind-icon">Clean<wbr>Key<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#invalid_chars" class="tsd-kind-icon">INVALID_<wbr>CHARS</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#invalid_chars_ci" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>CI</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#invalid_chars_ci_with_dots" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>CI_<wbr>WITH_<wbr>DOTS</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#invalid_chars_ci_with_specials" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>CI_<wbr>WITH_<wbr>SPECIALS</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#invalid_chars_with_dots" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>WITH_<wbr>DOTS</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#invalid_chars_with_specials" class="tsd-kind-icon">INVALID_<wbr>CHARS_<wbr>WITH_<wbr>SPECIALS</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankey" class="tsd-kind-icon">clean<wbr>Key</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeyci" class="tsd-kind-icon">clean<wbr>KeyCI</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeyciwithdots" class="tsd-kind-icon">clean<wbr>KeyCIWith<wbr>Dots</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeyciwithspecials" class="tsd-kind-icon">clean<wbr>KeyCIWith<wbr>Specials</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeysimple" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeysimpleci" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCI</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeysimpleciwithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCIWith<wbr>Dots</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeysimpleciwithspecials" class="tsd-kind-icon">clean<wbr>Key<wbr>SimpleCIWith<wbr>Specials</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeysimplewithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple<wbr>With<wbr>Dots</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeysimplewithspecials" class="tsd-kind-icon">clean<wbr>Key<wbr>Simple<wbr>With<wbr>Specials</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeywithdots" class="tsd-kind-icon">clean<wbr>Key<wbr>With<wbr>Dots</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#cleankeywithspecials" class="tsd-kind-icon">clean<wbr>Key<wbr>With<wbr>Specials</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
-</body>
-</html>
+<p>This will generate the docs and publish them in github pages.</p>
+
+<a href="#generate-a-version" id="generate-a-version" style="color: inherit; text-decoration: none;">
+  <h3>Generate a version</h3>
+</a>
+<p>There is a single yarn command for preparing a new release. See <a href="https://github.com/bitjson/typescript-starter#one-step-publish-preparation-script">One-step publish preparation script in TypeScript-Starter</a></p>
+<pre><code class="language-sh"><span class="hl-5"># Prepare a standard release</span><br/><span class="hl-1">yarn prepare-release</span><br/><br/><span class="hl-5"># Push to git</span><br/><span class="hl-1">git push --follow-tags origin master</span><br/><br/><span class="hl-5"># Publish to NPM (allowing public access, required if the package name is namespaced like `@somewhere/some-lib`)</span><br/><span class="hl-1">yarn publish --access public</span>
+</code></pre>
+</p>
+</details>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/CharAllowanceMode.html" class="tsd-kind-icon">Char<wbr/>Allowance<wbr/>Mode</a></li><li class="tsd-kind-type-alias"><a href="modules.html#CharAllowanceModeEnumValues" class="tsd-kind-icon">Char<wbr/>Allowance<wbr/>Mode<wbr/>Enum<wbr/>Values</a></li><li class="tsd-kind-type-alias"><a href="modules.html#CleanKeyOptions" class="tsd-kind-icon">Clean<wbr/>Key<wbr/>Options</a></li><li class="tsd-kind-variable"><a href="modules.html#INVALID_CHARS" class="tsd-kind-icon">INVALID_<wbr/>CHARS</a></li><li class="tsd-kind-variable"><a href="modules.html#INVALID_CHARS_CI" class="tsd-kind-icon">INVALID_<wbr/>CHARS_<wbr/>CI</a></li><li class="tsd-kind-variable"><a href="modules.html#INVALID_CHARS_CI_WITH_DOTS" class="tsd-kind-icon">INVALID_<wbr/>CHARS_<wbr/>CI_<wbr/>WITH_<wbr/>DOTS</a></li><li class="tsd-kind-variable"><a href="modules.html#INVALID_CHARS_CI_WITH_SPECIALS" class="tsd-kind-icon">INVALID_<wbr/>CHARS_<wbr/>CI_<wbr/>WITH_<wbr/>SPECIALS</a></li><li class="tsd-kind-variable"><a href="modules.html#INVALID_CHARS_WITH_DOTS" class="tsd-kind-icon">INVALID_<wbr/>CHARS_<wbr/>WITH_<wbr/>DOTS</a></li><li class="tsd-kind-variable"><a href="modules.html#INVALID_CHARS_WITH_SPECIALS" class="tsd-kind-icon">INVALID_<wbr/>CHARS_<wbr/>WITH_<wbr/>SPECIALS</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKey" class="tsd-kind-icon">clean<wbr/>Key</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeyCI" class="tsd-kind-icon">clean<wbr/>KeyCI</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeyCIWithDots" class="tsd-kind-icon">clean<wbr/>KeyCIWith<wbr/>Dots</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeyCIWithSpecials" class="tsd-kind-icon">clean<wbr/>KeyCIWith<wbr/>Specials</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeySimple" class="tsd-kind-icon">clean<wbr/>Key<wbr/>Simple</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeySimpleCI" class="tsd-kind-icon">clean<wbr/>Key<wbr/>SimpleCI</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeySimpleCIWithDots" class="tsd-kind-icon">clean<wbr/>Key<wbr/>SimpleCIWith<wbr/>Dots</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeySimpleCIWithSpecials" class="tsd-kind-icon">clean<wbr/>Key<wbr/>SimpleCIWith<wbr/>Specials</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeySimpleWithDots" class="tsd-kind-icon">clean<wbr/>Key<wbr/>Simple<wbr/>With<wbr/>Dots</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeySimpleWithSpecials" class="tsd-kind-icon">clean<wbr/>Key<wbr/>Simple<wbr/>With<wbr/>Specials</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeyWithDots" class="tsd-kind-icon">clean<wbr/>Key<wbr/>With<wbr/>Dots</a></li><li class="tsd-kind-function"><a href="modules.html#cleanKeyWithSpecials" class="tsd-kind-icon">clean<wbr/>Key<wbr/>With<wbr/>Specials</a></li><li class="tsd-kind-function"><a href="modules.html#processedSafeKey" class="tsd-kind-icon">processed<wbr/>Safe<wbr/>Key</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
