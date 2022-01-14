@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/plandek-utils/ts-clean-key/compare/v4.0.0...v4.1.0) (2022-01-14)
+
+
+### Features
+
+* adding `processedSafeKey()` which will swap any "unsafe" char with a unicode code string ([3a65520](https://github.com/plandek-utils/ts-clean-key/commit/3a655209b9743ba0e8d0cd1c5770851d45b89c73))
+
 ## [4.0.0](https://github.com/plandek-utils/ts-clean-key/compare/v3.0.0...v4.0.0) (2021-02-16)
 
 
