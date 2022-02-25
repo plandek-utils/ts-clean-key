@@ -13,15 +13,62 @@ import {
   cleanKeyCIWithSpecials,
   CharAllowanceMode,
   processedSafeKey,
+  parameterizeAndClean,
 } from "..";
+
+describe("parameterizeAndClean", () => {
+  it('parameterizeAndClean("")', () => {
+    expect(parameterizeAndClean("")).toEqual("");
+  });
+
+  it('parameterizeAndClean("  a - b  ")', () => {
+    expect(parameterizeAndClean("  a - b  ")).toEqual("a-b");
+  });
+
+  it('parameterizeAndClean("  parameterized url with special characters, öçıŞÇ  ")', () => {
+    expect(parameterizeAndClean("  parameterized url with special characters, öçıŞÇ  ")).toEqual(
+      "parameterized-url-with-special-characters-ocisc"
+    );
+  });
+
+  it('parameterizeAndClean("  |/~  ")', () => {
+    expect(parameterizeAndClean("  |/~  ", { prependIfNoLetters: "S.tu" })).toEqual("tu");
+  });
+});
 
 describe("default", () => {
   it('cleanKey("")', () => {
     expect(cleanKey("")).toEqual("");
   });
 
+  it('cleanKey("  a - b  ")', () => {
+    expect(cleanKey("  a - b  ")).toEqual("a-b");
+  });
+
+  it('cleanKey("  s|/~:ome S.tuff 🚀 \\n ñaaa --- a")', () => {
+    expect(cleanKey("  s|/~:ome S.tuff 🚀 \n ñaaa --- a")).toEqual("sometuffaaa-a");
+  });
+});
+
+describe("with no letters", () => {
+  it('cleanKey("", { prependIfNoLetters: "S.tu" })', () => {
+    expect(cleanKey("", { prependIfNoLetters: "S.tu" })).toEqual("tu");
+  });
+
   it('cleanKey("  a - b")', () => {
     expect(cleanKey("  a - b")).toEqual("a-b");
+  });
+
+  it('cleanKey("  1 - 2", { prependIfNoLetters: "S.tu  " })', () => {
+    expect(cleanKey("  1 - 2", { prependIfNoLetters: "S.tu  " })).toEqual("tu1-2");
+  });
+
+  it('cleanKey("  a - 2", { prependIfNoLetters: "S.tu  " })', () => {
+    expect(cleanKey("  a - 2", { prependIfNoLetters: "S.tu  " })).toEqual("a-2");
+  });
+
+  it('cleanKey("  1 - 2", )', () => {
+    expect(cleanKey("  1 - 2")).toEqual("1-2");
   });
 
   it('cleanKey("  s|/~:ome S.tuff 🚀 \\n ñaaa --- a")', () => {

@@ -1,3 +1,5 @@
+import parameterize from "parameterize";
+
 /**
  * @internal
  * @ignore
@@ -131,6 +133,7 @@ export enum CharAllowanceMode {
 export type CharAllowanceModeEnumValues = "strict" | "dots" | "specials";
 
 export type CleanKeyOptions = {
+  prependIfNoLetters?: string;
   replaceManyDashes?: boolean;
   caseSensitive?: boolean;
   mode?: CharAllowanceModeEnumValues;
@@ -144,7 +147,7 @@ export type CleanKeyOptions = {
  * @see cleanKey
  */
 export function cleanKeyCI(s: string, opts: Omit<CleanKeyOptions, "caseSensitive"> = {}): string {
-  return cleanKey(s, { ...opts, caseSensitive: false });
+  return run(s, { ...opts, caseSensitive: false });
 }
 
 /**
@@ -157,7 +160,7 @@ export function cleanKeyCI(s: string, opts: Omit<CleanKeyOptions, "caseSensitive
  * @see cleanKey
  */
 export function cleanKeyWithDots(s: string, opts: Omit<CleanKeyOptions, "mode"> = {}): string {
-  return cleanKey(s, { ...opts, mode: CharAllowanceMode.Dots });
+  return run(s, { ...opts, mode: CharAllowanceMode.Dots });
 }
 
 /**
@@ -169,7 +172,7 @@ export function cleanKeyWithDots(s: string, opts: Omit<CleanKeyOptions, "mode"> 
  * @see cleanKey
  */
 export function cleanKeyCIWithDots(s: string, opts: Omit<CleanKeyOptions, "caseSensitive" | "mode"> = {}): string {
-  return cleanKey(s, { ...opts, caseSensitive: false, mode: CharAllowanceMode.Dots });
+  return run(s, { ...opts, caseSensitive: false, mode: CharAllowanceMode.Dots });
 }
 
 /**
@@ -182,7 +185,7 @@ export function cleanKeyCIWithDots(s: string, opts: Omit<CleanKeyOptions, "caseS
  * @see cleanKey
  */
 export function cleanKeyWithSpecials(s: string, opts: Omit<CleanKeyOptions, "mode"> = {}): string {
-  return cleanKey(s, { ...opts, mode: CharAllowanceMode.Specials });
+  return run(s, { ...opts, mode: CharAllowanceMode.Specials });
 }
 
 /**
@@ -194,7 +197,7 @@ export function cleanKeyWithSpecials(s: string, opts: Omit<CleanKeyOptions, "mod
  * @see cleanKey
  */
 export function cleanKeyCIWithSpecials(s: string, opts: Omit<CleanKeyOptions, "caseSensitive" | "mode"> = {}): string {
-  return cleanKey(s, { ...opts, caseSensitive: false, mode: CharAllowanceMode.Specials });
+  return run(s, { ...opts, caseSensitive: false, mode: CharAllowanceMode.Specials });
 }
 
 /**
@@ -205,21 +208,42 @@ export function cleanKeyCIWithSpecials(s: string, opts: Omit<CleanKeyOptions, "c
  *  - `dots` => strict + `.`
  *  - `specials` => strict + `.`, `|`, `~`, `/`, and `:`
  * It also removes multiple dashes in a row and replaces them for a single dash unless option `replaceManyDashes: false` is given
+ * If no letters `a-z` or `A-Z` are found, and the option `prependIfNoLetters` is given, it will prepend it to the original string, and clean again.
  *
  * @param s
  * @param opts
  * @param opts.caseSensitive (default `true`)
  * @param opts.replaceManyDashes (default `true`)
+ * @param opts.prependIfNoLetters (default `undefined`)
  * @param opts.mode (default `strict`)
  */
 export function cleanKey(s: string, opts: CleanKeyOptions = {}): string {
+  return run(s, opts);
+}
+
+/**
+ * @internal
+ * @hidden
+ */
+const ANY_LETTERS = /[a-zA-Z]/;
+
+/**
+ * @internal
+ * @hidden
+ */
+function run(s: string, opts: CleanKeyOptions = {}): string {
   const replaceManyDashes = opts.replaceManyDashes ?? true;
+  const prependIfNoLetters = opts.prependIfNoLetters ?? "";
   const caseSensitive = opts.caseSensitive ?? true;
   const mode = opts.mode ?? CharAllowanceMode.Strict;
 
   const cleanString = performClean(s, mode, caseSensitive);
 
-  return replaceManyDashes ? cleanString.replace(MANY_DASHES, DASH) : cleanString;
+  const value = replaceManyDashes ? cleanString.replace(MANY_DASHES, DASH) : cleanString;
+  if (prependIfNoLetters && !ANY_LETTERS.test(value)) {
+    return run(`${prependIfNoLetters}${s}`, { ...opts, prependIfNoLetters: undefined });
+  }
+  return value;
 }
 
 /**
@@ -257,4 +281,16 @@ function processedSafeChar(char: string): string {
 
   const code = char.charCodeAt(0);
   return `-${code.toString(16).toUpperCase().padStart(6, "0")}`;
+}
+
+/**
+ * First it trims and parameterizes the original string (using the `parameterize` package), and then it cleans it using the `cleanKey` function
+ *
+ * @param original
+ * @param opts
+ * @see cleanKey
+ */
+export function parameterizeAndClean(original: string, opts: CleanKeyOptions = {}): string {
+  const key = parameterize(original.trim());
+  return cleanKey(key, opts);
 }

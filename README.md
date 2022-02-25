@@ -31,6 +31,19 @@ cleanKey("  a - b"); // => "a-b"
 cleanKey("  some Stuff 🚀 \n ñaaa --- a"); // => "sometuffaaa-a"
 ```
 
+### `parameterizeAndClean` function
+
+First it trims and parameterizes the original string (using the [`parameterize`](https://www.npmjs.com/package/parameterize) package), and then it cleans it using the `cleanKey` function
+
+```typescript
+import { parameterizeAndClean } from "@plandek-utils/ts-clean-key";
+
+parameterizeAndClean(""); // ""
+parameterizeAndClean("  a - b  "); // "a-b"
+parameterizeAndClean("  parameterized url with special characters, öçıŞÇ  "); // "parameterized-url-with-special-characters-ocisc" 
+parameterizeAndClean("  |/~  ", { prependIfNoLetters: "S.tu" }); // "tu"
+```
+
 ### `replaceManyDashes` option and functions
 
 By default, `cleanKey` will replace many resulting dashes for a single dash. You can disable this behaviour by passing `replaceManyDashes: false` in the optional options argument, or by using the `cleanKeySimple()` function.
@@ -41,6 +54,18 @@ import { cleanKey, cleanKeySimple } from "@plandek-utils/ts-clean-key";
 cleanKey(" something-is---here "); // => "something-is-here"
 cleanKey(" something-is---here ", { replaceManyDashes: false }); // => "something-is---here"
 cleanKeySimple(" something-is---here "); // => "something-is---here"
+```
+
+### `prependIfNoLetters` option
+
+If in the resulting key no letters `a-z` or `A-Z` are found, and the option `prependIfNoLetters` is given, it will prepend it to the original string, and clean again. Notice that the string passed to be prepended will also be cleaned. It has no effect if the resulting key contains letters.
+
+```typescript
+import { cleanKey, cleanKeySimple } from "@plandek-utils/ts-clean-key";
+
+cleanKey(" 1 - 2 "); // => "1-2"
+cleanKey("  1 - 2", { prependIfNoLetters: "S.tu  " }); // => "tu1-2"
+cleanKey("  a - 2", { prependIfNoLetters: "S.tu  " }); // => "a-2"
 ```
 
 ### `caseSensitive` option and functions
