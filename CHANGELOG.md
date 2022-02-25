@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/plandek-utils/ts-clean-key/compare/v4.1.0...v4.2.0) (2022-02-25)
+
+
+### Features
+
+* `parameterizeAndClean()` and `prependIfNoLetters` option ([6d5e471](https://github.com/plandek-utils/ts-clean-key/commit/6d5e471a9359a2735477a04ee67f4eb9c7f0cba8))
+
 ## [4.1.0](https://github.com/plandek-utils/ts-clean-key/compare/v4.0.0...v4.1.0) (2022-01-14)
 
 
