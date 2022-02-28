@@ -34,6 +34,14 @@ describe("parameterizeAndClean", () => {
   it('parameterizeAndClean("  |/~  ")', () => {
     expect(parameterizeAndClean("  |/~  ", { prependIfNoLetters: "S.tu" })).toEqual("tu");
   });
+
+  it('parameterizeAndClean(" - |/~ - ")', () => {
+    expect(parameterizeAndClean(" -  |/~ -  ", { prependIfNoLetters: "-S.t-u" })).toEqual("-t-u-");
+  });
+
+  it('parameterizeAndClean("  - |/~ - ", { trimEdgeDashes: true })', () => {
+    expect(parameterizeAndClean("  - |/~ -  ", { prependIfNoLetters: "-S.t-u", trimEdgeDashes: true })).toEqual("t-u");
+  });
 });
 
 describe("default", () => {

@@ -40,7 +40,7 @@ import { parameterizeAndClean } from "@plandek-utils/ts-clean-key";
 
 parameterizeAndClean(""); // ""
 parameterizeAndClean("  a - b  "); // "a-b"
-parameterizeAndClean("  parameterized url with special characters, öçıŞÇ  "); // "parameterized-url-with-special-characters-ocisc" 
+parameterizeAndClean("  parameterized url with special characters, öçıŞÇ  "); // "parameterized-url-with-special-characters-ocisc"
 parameterizeAndClean("  |/~  ", { prependIfNoLetters: "S.tu" }); // "tu"
 ```
 
@@ -54,6 +54,18 @@ import { cleanKey, cleanKeySimple } from "@plandek-utils/ts-clean-key";
 cleanKey(" something-is---here "); // => "something-is-here"
 cleanKey(" something-is---here ", { replaceManyDashes: false }); // => "something-is---here"
 cleanKeySimple(" something-is---here "); // => "something-is---here"
+```
+
+### `trimEdgeDashes` option and functions
+
+With the option `trimEdgeDashes: true`, `cleanKey` will remove any dash `-` at the beginning or end of the clean key.
+
+```typescript
+import { cleanKey } from "@plandek-utils/ts-clean-key";
+
+cleanKey(" -something-is---here-"); // => "-something-is-here-"
+cleanKey(" -something-is---here-", { trimEdgeDashes: false }); // => "-something-is-here-"
+cleanKey(" -something-is---here-", { trimEdgeDashes: true }); // => "something-is-here"
 ```
 
 ### `prependIfNoLetters` option

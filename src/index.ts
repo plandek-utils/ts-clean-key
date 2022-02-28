@@ -1,3 +1,4 @@
+import trim from "lodash.trim";
 import parameterize from "parameterize";
 
 /**
@@ -134,6 +135,7 @@ export type CharAllowanceModeEnumValues = "strict" | "dots" | "specials";
 
 export type CleanKeyOptions = {
   prependIfNoLetters?: string;
+  trimEdgeDashes?: boolean;
   replaceManyDashes?: boolean;
   caseSensitive?: boolean;
   mode?: CharAllowanceModeEnumValues;
@@ -209,11 +211,13 @@ export function cleanKeyCIWithSpecials(s: string, opts: Omit<CleanKeyOptions, "c
  *  - `specials` => strict + `.`, `|`, `~`, `/`, and `:`
  * It also removes multiple dashes in a row and replaces them for a single dash unless option `replaceManyDashes: false` is given
  * If no letters `a-z` or `A-Z` are found, and the option `prependIfNoLetters` is given, it will prepend it to the original string, and clean again.
+ * If `trimEdgeDashes` is true, it will trim the edge dashes (`-`) from the beginning and end of the clean string
  *
  * @param s
  * @param opts
  * @param opts.caseSensitive (default `true`)
  * @param opts.replaceManyDashes (default `true`)
+ * @param opts.trimEdgeDashes (default `false`)
  * @param opts.prependIfNoLetters (default `undefined`)
  * @param opts.mode (default `strict`)
  */
@@ -233,6 +237,7 @@ const ANY_LETTERS = /[a-zA-Z]/;
  */
 function run(s: string, opts: CleanKeyOptions = {}): string {
   const replaceManyDashes = opts.replaceManyDashes ?? true;
+  const trimEdgeDashes = opts.trimEdgeDashes ?? false;
   const prependIfNoLetters = opts.prependIfNoLetters ?? "";
   const caseSensitive = opts.caseSensitive ?? true;
   const mode = opts.mode ?? CharAllowanceMode.Strict;
@@ -240,10 +245,11 @@ function run(s: string, opts: CleanKeyOptions = {}): string {
   const cleanString = performClean(s, mode, caseSensitive);
 
   const value = replaceManyDashes ? cleanString.replace(MANY_DASHES, DASH) : cleanString;
-  if (prependIfNoLetters && !ANY_LETTERS.test(value)) {
+  const valueTrimmed = trimEdgeDashes ? trim(value, "-") : value;
+  if (prependIfNoLetters && !ANY_LETTERS.test(valueTrimmed)) {
     return run(`${prependIfNoLetters}${s}`, { ...opts, prependIfNoLetters: undefined });
   }
-  return value;
+  return valueTrimmed;
 }
 
 /**
