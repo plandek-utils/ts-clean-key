@@ -1,6 +1,6 @@
 {
   "name": "@plandek-utils/ts-clean-key",
-  "version": "4.2.2",
+  "version": "4.3.0",
   "author": "Eduardo Turiño <eturino@plandek.com>",
   "description": "Removes bad chars for a string key (all except number, lowcase ascii7 letters, dash `-` and underscore `_`). It also removes multiple dashes in a row and replaces them for a single dash",
   "main": "build/main/index.js",
@@ -43,7 +43,7 @@
     "version": "standard-version",
     "reset": "git clean -dfx -e .idea && git reset --hard && yarn",
     "clean": "trash build test",
-    "prepare-release": "run-s reset test doc:html version doc:publish"
+    "prepare-release": "run-s reset test doc:html doc:publish version"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.0](https://github.com/plandek-utils/ts-clean-key/compare/v4.2.2...v4.3.0) (2022-02-28)
+
+
+### Features
+
+* option to trimEdgeDashes ([c3f5a0b](https://github.com/plandek-utils/ts-clean-key/commit/c3f5a0b6cc9adf822d04710c9a73107ec757b2e6))
+
 ### [4.2.2](https://github.com/plandek-utils/ts-clean-key/compare/v4.2.1...v4.2.2) (2022-02-25)
 
 ### [4.2.1](https://github.com/plandek-utils/ts-clean-key/compare/v4.2.0...v4.2.1) (2022-02-25)
