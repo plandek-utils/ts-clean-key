@@ -42,6 +42,11 @@ describe("parameterizeAndClean", () => {
   it('parameterizeAndClean("  - |/~ - ", { trimEdgeDashes: true })', () => {
     expect(parameterizeAndClean("  - |/~ -  ", { prependIfNoLetters: "-S.t-u", trimEdgeDashes: true })).toEqual("t-u");
   });
+  it('parameterizeAndClean("  - |/~ - ", { trimEdgeDashes: true })', () => {
+    expect(parameterizeAndClean("  -__|/~ -  ", { prependIfNoLetters: "-S.t_-_u", trimEdgeDashes: true })).toEqual(
+      "t_-_u-__"
+    );
+  });
 });
 
 describe("default", () => {
