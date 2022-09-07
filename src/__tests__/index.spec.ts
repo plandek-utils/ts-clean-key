@@ -14,6 +14,7 @@ import {
   CharAllowanceMode,
   processedSafeKey,
   parameterizeAndClean,
+  safeKeyToOriginal,
 } from "..";
 
 describe("parameterizeAndClean", () => {
@@ -461,5 +462,26 @@ describe("processedSafeKey", () => {
 
   it("replaces space with -000020", () => {
     expect(processedSafeKey("casa de/paco")).toEqual("casa-000020de-00002Fpaco");
+  });
+});
+
+describe("safeKeyToOriginal", () => {
+  it("works fine with safe chars", () => {
+    expect(safeKeyToOriginal("casa")).toEqual("casa");
+  });
+
+  it("replaces space with -000020", () => {
+    expect(safeKeyToOriginal("casa-000020-000020de-000020paco")).toEqual("casa  de paco");
+  });
+
+  it("replaces / with -00002F", () => {
+    expect(safeKeyToOriginal("casa-000020de-00002Fpaco")).toEqual("casa de/paco");
+  });
+
+  ["Turiño", "Turiño de Abajo", "square brackets [ ] -0 -0", "😁 la caña!"].forEach((testCase) => {
+    const safe = processedSafeKey(testCase);
+    it(`works with ${safe} => ${testCase}`, () => {
+      expect(safeKeyToOriginal(safe)).toEqual(testCase);
+    });
   });
 });

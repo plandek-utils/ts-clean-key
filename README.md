@@ -172,6 +172,15 @@ processedSafeKey("casa"); // => "casa"
 processedSafeKey("casa de/paco"); // => "casa-000020de-00002Fpaco");
 ```
 
+## `safeKeyToOriginal`
+
+Inverse to `processedSafeKey`, this function will replace the `-HEX_UNICODE_CODE_PADDED_6` with the original character.
+
+```typescript
+safeKeyToOriginal("casa"); // => "casa"
+safeKeyToOriginal("casa-000020de-00002Fpaco"); // => "casa de/paco");
+```
+
 ## Breaking changes warning
 
 ### v3.x
