@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.5.0](https://github.com/plandek-utils/ts-clean-key/compare/v4.4.0...v4.5.0) (2022-09-07)
+
+
+### Features
+
+* safeKeyToOriginal function, inverse of processedSafeKey ([f7fab30](https://github.com/plandek-utils/ts-clean-key/commit/f7fab30c3d08e67658b8f0fad7b49f77b73457bc))
+
 ## [4.4.0](https://github.com/plandek-utils/ts-clean-key/compare/v4.2.2...v4.4.0) (2022-02-28)
 
 
