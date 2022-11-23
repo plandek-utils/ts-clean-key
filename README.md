@@ -110,23 +110,23 @@ import {
   CharAllowanceMode,
 } from "@plandek-utils/ts-clean-key";
 
-cleanKey(" Re.|~:/move---Me "); // => "emove-e"
+cleanKey(" Re.|~:/m#ove---Me "); // => "emove-e"
 
-cleanKey(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Dots }); // => "e.move-e"
-cleanKeyWithDots(" Re.|~:/move---Me "); // => "e.move-e"
+cleanKey(" Re.|~:/m#ove---Me ", { mode: CharAllowanceMode.Dots }); // => "e.move-e"
+cleanKeyWithDots(" Re.|~:/m#ove---Me "); // => "e.move-e"
 
-cleanKey(" Re.|~:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots }); // => "Re.move-Me"
-cleanKeyWithDots(" Re.|~:/move---Me ", { caseSensitive: false }); // => "Re.move-Me"
-cleanKeyCI(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Dots }); // => "Re.move-Me"
+cleanKey(" Re.|~:/m#ove---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots }); // => "Re.move-Me"
+cleanKeyWithDots(" Re.|~:/m#ove---Me ", { caseSensitive: false }); // => "Re.move-Me"
+cleanKeyCI(" Re.|~:/m#ove---Me ", { mode: CharAllowanceMode.Dots }); // => "Re.move-Me"
 
-cleanKey(" Re.|~:/move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Dots }); // => "e.move---e"
-cleanKeyWithDots(" Re.|~:/move---Me ", { replaceManyDashes: false }); // => "e.move---e"
-cleanKeySimpleWithDots(" Re.|~:/move---Me "); // => "e.move---e"
+cleanKey(" Re.|~:/m#ove---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Dots }); // => "e.move---e"
+cleanKeyWithDots(" Re.|~:/m#ove---Me ", { replaceManyDashes: false }); // => "e.move---e"
+cleanKeySimpleWithDots(" Re.|~:/m#ove---Me "); // => "e.move---e"
 
-cleanKey(" Re.|~:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots, replaceManyDashes: false }); // => "Re.move---Me"
-cleanKeyWithDots(" Re.|~:/move---Me ", { caseSensitive: false, replaceManyDashes: false }); // => "Re.move---Me"
-cleanKeyCI(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Dots, replaceManyDashes: false }); // => "Re.move---Me"
-cleanKeySimpleCIWithDots(" Re.|~:/move---Me "); // => "Re.move---Me"
+cleanKey(" Re.|~:/m#ove---Me ", { caseSensitive: false, mode: CharAllowanceMode.Dots, replaceManyDashes: false }); // => "Re.move---Me"
+cleanKeyWithDots(" Re.|~:/m#ove---Me ", { caseSensitive: false, replaceManyDashes: false }); // => "Re.move---Me"
+cleanKeyCI(" Re.|~:/m#ove---Me ", { mode: CharAllowanceMode.Dots, replaceManyDashes: false }); // => "Re.move---Me"
+cleanKeySimpleCIWithDots(" Re.|~:/m#ove---Me "); // => "Re.move---Me"
 ```
 
 ### `mode: specials` option and functions
@@ -144,23 +144,23 @@ import {
   CharAllowanceMode,
 } from "@plandek-utils/ts-clean-key";
 
-cleanKey(" Re.|~:/move---Me "); // => "emove-e"
+cleanKey(" Re.|~:/m#ove---Me "); // => "emove-e"
 
-cleanKey(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Specials }); // => "e.|~:/move-e"
-cleanKeyWithSpecials(" Re.|~:/move---Me "); // => "e.|~:/move-e"
+cleanKey(" Re.|~:/m#ove---Me ", { mode: CharAllowanceMode.Specials }); // => "e.|~:/m#ove-e"
+cleanKeyWithSpecials(" Re.|~:/m#ove---Me "); // => "e.|~:/m#ove-e"
 
-cleanKey(" Re.|~:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials }); // => "Re.|~:/move-Me"
-cleanKeyWithSpecials(" Re.|~:/move---Me ", { caseSensitive: false }); // => "Re.|~:/move-Me"
-cleanKeyCI(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Specials }); // => "Re.|~:/move-Me"
+cleanKey(" Re.|~:/m#ove---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials }); // => "Re.|~:/m#ove-Me"
+cleanKeyWithSpecials(" Re.|~:/m#ove---Me ", { caseSensitive: false }); // => "Re.|~:/m#ove-Me"
+cleanKeyCI(" Re.|~:/m#ove---Me ", { mode: CharAllowanceMode.Specials }); // => "Re.|~:/m#ove-Me"
 
-cleanKey(" Re.|~:/move---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Specials }); // => "e.|~:/move---e"
-cleanKeyWithSpecials(" Re.|~:/move---Me ", { replaceManyDashes: false }); // => "e.|~:/move---e"
-cleanKeySimpleWithSpecials(" Re.|~:/move---Me "); // => "e.|~:/move---e"
+cleanKey(" Re.|~:/m#ove---Me ", { replaceManyDashes: false, mode: CharAllowanceMode.Specials }); // => "e.|~:/m#ove---e"
+cleanKeyWithSpecials(" Re.|~:/m#ove---Me ", { replaceManyDashes: false }); // => "e.|~:/m#ove---e"
+cleanKeySimpleWithSpecials(" Re.|~:/m#ove---Me "); // => "e.|~:/m#ove---e"
 
-cleanKey(" Re.|~:/move---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials, replaceManyDashes: false }); // => "Re.|~:/move---Me"
-cleanKeyWithSpecials(" Re.|~:/move---Me ", { caseSensitive: false, replaceManyDashes: false }); // => "Re.|~:/move---Me"
-cleanKeyCI(" Re.|~:/move---Me ", { mode: CharAllowanceMode.Specials, replaceManyDashes: false }); // => "Re.|~:/move---Me"
-cleanKeySimpleCIWithSpecials(" Re.|~:/move---Me "); // => "Re.|~:/move---Me"
+cleanKey(" Re.|~:/m#ove---Me ", { caseSensitive: false, mode: CharAllowanceMode.Specials, replaceManyDashes: false }); // => "Re.|~:/m#ove---Me"
+cleanKeyWithSpecials(" Re.|~:/m#ove---Me ", { caseSensitive: false, replaceManyDashes: false }); // => "Re.|~:/m#ove---Me"
+cleanKeyCI(" Re.|~:/m#ove---Me ", { mode: CharAllowanceMode.Specials, replaceManyDashes: false }); // => "Re.|~:/m#ove---Me"
+cleanKeySimpleCIWithSpecials(" Re.|~:/m#ove---Me "); // => "Re.|~:/m#ove---Me"
 ```
 
 ## `processedSafeKey`
@@ -182,6 +182,14 @@ safeKeyToOriginal("casa-000020de-00002Fpaco"); // => "casa de/paco");
 ```
 
 ## Breaking changes warning
+
+### v5.x
+
+Since v5.0 the `specials` option includes the hashtag character `#`.
+
+### v4.x
+
+Since v4.0 the `specials` option includes the tilde character `~`.
 
 ### v3.x
 
