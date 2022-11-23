@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/plandek-utils/ts-clean-key/compare/v4.5.0...v5.0.0) (2022-11-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* The hashtag character was always stripped out, but now it is considered safe under
+the special mode
+
+### Features
+
+* special mode includes hashtag character ([44db303](https://github.com/plandek-utils/ts-clean-key/commit/44db303b1effd9921cb9f8f1fdcd40f625a5fbdf))
+
 ## [4.5.0](https://github.com/plandek-utils/ts-clean-key/compare/v4.4.0...v4.5.0) (2022-09-07)
 
 
