@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/plandek-utils/time-utils/compare/v5.0.0...v6.0.0) (2024-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* dependencies replacement might end up with some edge cases
+
+### Features
+
+* refactor and changes in dependencies ([c34245f](https://github.com/plandek-utils/time-utils/commit/c34245f0036b006db1b5603e36b4b8ec26b4d56a))
+
 ## [5.0.0](https://github.com/plandek-utils/ts-clean-key/compare/v4.5.0...v5.0.0) (2022-11-23)
 
 
