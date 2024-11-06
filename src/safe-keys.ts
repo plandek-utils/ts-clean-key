@@ -1,4 +1,15 @@
 /**
+ * Inverse of processedSafeKey function
+ * @param safeKey
+ * @see processedSafeKey
+ */
+export function safeKeyToOriginal(safeKey: string): string {
+  return safeKey.replace(RE, (_match, code) => {
+    return String.fromCharCode(Number.parseInt(code, 16));
+  });
+}
+
+/**
  * For each character in the string that is not one of the safe characters [a-zA-Z0-9],
  * it will replace them with `-HEX_UNICODE_CODE_PADDED_6` (e.g. ' ' => '-000020')
  *
@@ -20,14 +31,3 @@ function processedSafeChar(char: string): string {
 }
 
 const RE = /-([0-9A-F]{6})/g;
-
-/**
- * Inverse of processedSafeKey function
- * @param safeKey
- * @see processedSafeKey
- */
-export function safeKeyToOriginal(safeKey: string): string {
-  return safeKey.replace(RE, (_match, code) => {
-    return String.fromCharCode(parseInt(code, 16));
-  });
-}
