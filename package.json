@@ -1,6 +1,6 @@
 {
   "name": "@plandek-utils/ts-clean-key",
-  "version": "7.0.4",
+  "version": "6.0.0",
   "author": "Eduardo Turiño <eturino@plandek.com>",
   "description": "Removes bad chars for a string key (all except number, lowcase ascii7 letters, dash `-` and underscore `_`). It also removes multiple dashes in a row and replaces them for a single dash",
   "main": "dist/index.js",

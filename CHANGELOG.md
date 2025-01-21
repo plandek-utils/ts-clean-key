@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/plandek-utils/ts-clean-key/compare/v5.0.0...v6.0.0) (2025-01-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* dependencies replacement might end up with some edge cases
+
+### Features
+
+* refactor and changes in dependencies ([c34245f](https://github.com/plandek-utils/ts-clean-key/commit/c34245f0036b006db1b5603e36b4b8ec26b4d56a))
+
+
+### Bug Fixes
+
+* **deps:** bump es-toolkit from 1.26.1 to 1.27.0 ([#266](https://github.com/plandek-utils/ts-clean-key/issues/266)) ([950bee5](https://github.com/plandek-utils/ts-clean-key/commit/950bee5697a44975e6a654b25d11889250856b2c))
+* **deps:** bump es-toolkit from 1.27.0 to 1.29.0 ([#279](https://github.com/plandek-utils/ts-clean-key/issues/279)) ([f5cab62](https://github.com/plandek-utils/ts-clean-key/commit/f5cab623abb47328bbd7cb2198fdb34d21287567))
+* **deps:** bump es-toolkit from 1.29.0 to 1.30.1 ([#285](https://github.com/plandek-utils/ts-clean-key/issues/285)) ([09c1b11](https://github.com/plandek-utils/ts-clean-key/commit/09c1b11d1b469f7a0de2d02d3367431ee452971f))
+* **deps:** bump es-toolkit from 1.30.1 to 1.31.0 ([#287](https://github.com/plandek-utils/ts-clean-key/issues/287)) ([1bcca81](https://github.com/plandek-utils/ts-clean-key/commit/1bcca818028bd79252942a0e5ad79c23db905cba))
+
 ### [7.0.4](https://github.com/plandek-utils/time-utils/compare/v7.0.2...v7.0.4) (2025-01-21)
 
 ### [7.0.2](https://github.com/plandek-utils/time-utils/compare/v7.0.0...v7.0.2) (2025-01-21)
