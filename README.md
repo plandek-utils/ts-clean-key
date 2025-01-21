@@ -19,7 +19,9 @@ It can optionally also allow extra characters, like [dots](#mode-dots-option-and
 
 ## Installation
 
-`yarn add @plandek-utils/ts-clean-key` or `npm install @plandek-utils/ts-clean-key`.
+```bash
+npm install @plandek-utils/ts-clean-key
+```
 
 ## Usage
 
