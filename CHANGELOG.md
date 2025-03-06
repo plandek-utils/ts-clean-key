@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/plandek-utils/ts-clean-key/compare/v7.0.4...v7.1.0) (2025-03-06)
+
+
+### Features
+
+* escapeTemplateString() function for amcharts escaping ([15bca1c](https://github.com/plandek-utils/ts-clean-key/commit/15bca1c399030f688e2d7490d1ed7edb511f139a))
+
 ### [7.0.4](https://github.com/plandek-utils/time-utils/compare/v7.0.2...v7.0.4) (2025-01-21)
 
 ### [7.0.2](https://github.com/plandek-utils/time-utils/compare/v7.0.0...v7.0.2) (2025-01-21)
