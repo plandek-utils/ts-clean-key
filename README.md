@@ -183,6 +183,21 @@ safeKeyToOriginal("casa"); // => "casa"
 safeKeyToOriginal("casa-000020de-00002Fpaco"); // => "casa de/paco");
 ```
 
+## `escapeTemplateString`
+
+This function escapes the characters of a template string following the rules of [amCharts text styling](https://www.amcharts.com/docs/v5/concepts/formatters/text-styling/#Escaping). It replaces curly braces `{` with `{{` and `}` with `}}`, and square brackets `[` with `[[` and `]` with `]]`.
+
+**Warning**: This function is not repeatable, meaning you cannot apply it several times to the same string. For example, if you apply it once to `{hello}`, you get `{{hello}}`, and if you apply it again, you get `{{{{hello}}}}`.
+
+```typescript
+import { escapeTemplateString } from "@plandek-utils/ts-clean-key";
+
+escapeTemplateString("{hello}"); // => "{{hello}}"
+escapeTemplateString("[world]"); // => "[[world]]"
+escapeTemplateString("{hello [world]}"); // => "{{hello [[world]]}}"
+escapeTemplateString("hello world"); // => "hello world"
+```
+
 ## Breaking changes warning
 
 ### v5.x

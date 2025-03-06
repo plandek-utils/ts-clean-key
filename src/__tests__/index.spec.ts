@@ -14,6 +14,7 @@ import {
   cleanKeySimpleWithSpecials,
   cleanKeyWithDots,
   cleanKeyWithSpecials,
+  escapeTemplateString,
   parameterizeAndClean,
   processedSafeKey,
   safeKeyToOriginal,
@@ -550,4 +551,38 @@ describe("safeKeyToOriginal", () => {
       expect(safeKeyToOriginal(safe)).toEqual(testCase);
     });
   }
+});
+
+describe("escapeTemplateString", () => {
+  it("should escape curly braces", () => {
+    expect(escapeTemplateString("{hello}")).toEqual("{{hello}}");
+  });
+
+  it("should escape square brackets", () => {
+    expect(escapeTemplateString("[world]")).toEqual("[[world]]");
+  });
+
+  it("should escape both curly braces and square brackets", () => {
+    expect(escapeTemplateString("{hello [world]}")).toEqual("{{hello [[world]]}}");
+  });
+
+  it("should handle empty string", () => {
+    expect(escapeTemplateString("")).toEqual("");
+  });
+
+  it("should handle string without special characters", () => {
+    expect(escapeTemplateString("hello world")).toEqual("hello world");
+  });
+
+  it("should handle multiple occurrences of special characters", () => {
+    expect(escapeTemplateString("{a} {b} [c] [d]")).toEqual("{{a}} {{b}} [[c]] [[d]]");
+  });
+
+  it("should handle already escaped characters (not repeatable)", () => {
+    // As mentioned in the function documentation, the function is not repeatable
+    const once = escapeTemplateString("{hello}");
+    const twice = escapeTemplateString(once);
+    expect(once).toEqual("{{hello}}");
+    expect(twice).toEqual("{{{{hello}}}}");
+  });
 });
